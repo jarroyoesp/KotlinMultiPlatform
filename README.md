@@ -10,4 +10,5 @@ In this app we share common code for both platforms (Android/iOS) to get data fr
 I have followed these examples:
 
 https://kotlinlang.org/docs/tutorials/native/mpp-ios-android.html
+
 https://www.raywenderlich.com/1022411-kotlin-multiplatform-project-for-android-and-ios-getting-started
