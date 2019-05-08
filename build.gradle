@@ -5,11 +5,17 @@ buildscript {
     repositories {
         google()
         jcenter()
+
+        mavenCentral()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
         
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,8 +25,17 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
+        mavenCentral()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
     }
+}
+
+ext {
+    retrofitVersion = "2.3.0"
+    coroutine_version = "1.1.1"
+    serializer_version = "0.11.0"
+    ktor_version = "1.1.2"
 }
 
 task clean(type: Delete) {
