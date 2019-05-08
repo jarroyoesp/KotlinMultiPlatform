@@ -2,6 +2,12 @@
 
 This example shows how to create a simple Android/iOS project sharing some Kotlin code.
 
-I have followed this example:
+In this app we share common code for both platforms (Android/iOS) to get data from an API (in this case OpenWeatherAPI). The libraries that we use are:
+
+- KTOR: to make HTTP requests [https://github.com/ktorio/ktor]
+- Serailization: to De/Serializing JSON [https://github.com/Kotlin/kotlinx.serialization]
+
+I have followed these examples:
 
 https://kotlinlang.org/docs/tutorials/native/mpp-ios-android.html
+https://www.raywenderlich.com/1022411-kotlin-multiplatform-project-for-android-and-ios-getting-started
