@@ -22,16 +22,6 @@ kotlin {
         fromPreset(presets.jvm, 'android')
     }
 
-    def STRING = "String"
-    def INT = "int"
-
-   //buildConfigField STRING, "GOOGLE_API_KEY", '"AIzaSyDztvy-kOw1lPY0nNOSPps7LGEkM5D-c_0"'
-   //buildConfigField STRING, "GOOGLE_API_BOOKS_URL_BASE", '"https://www.googleapis.com/"'
-
-   //buildConfigField STRING, "NOTIFICATION_CHANNEL_ALARMS_ID", '"NOTIFICATION_CHANNEL_ALARMS_ID"'
-   //buildConfigField STRING, "NOTIFICATION_CHANNEL_ALARMS_NAME", '"Books Alarms"'
-
-
     sourceSets {
         commonMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib-common'
