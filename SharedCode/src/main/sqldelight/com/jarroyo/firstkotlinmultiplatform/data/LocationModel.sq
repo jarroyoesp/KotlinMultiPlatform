@@ -1,0 +1,14 @@
+
+CREATE TABLE locationModel (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    city_name TEXT NOT NULL
+);
+
+
+insertItem:
+INSERT OR FAIL INTO locationModel(city_name) VALUES (?);
+
+
+selectAll:
+SELECT *
+FROM locationModel;

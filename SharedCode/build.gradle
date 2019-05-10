@@ -1,19 +1,13 @@
-//apply plugin: 'kotlin-multiplatform'
-//apply plugin: 'kotlinx-serialization'
-
-repositories {
-    google()
-    jcenter()
-    mavenCentral()
-    maven { url "https://kotlin.bintray.com/kotlinx" }
-}
 apply plugin: 'kotlin-multiplatform'
+
 apply plugin: 'kotlinx-serialization'
+
+apply plugin: 'com.squareup.sqldelight'
 
 kotlin {
     targets {
-        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
-                              ? presets.iosArm64 : presets.iosX64
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")  \
+                               ? presets.iosArm64 : presets.iosX64
 
         fromPreset(iOSTarget, 'iOS') {
             compilations.main.outputKinds('FRAMEWORK')
@@ -27,36 +21,54 @@ kotlin {
             api 'org.jetbrains.kotlin:kotlin-stdlib-common'
 
             implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+
+            // COROUTINE
             implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutine_version"
+
+            // SERIALIZATION
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serializer_version"
 
+            // KTOR
             implementation "io.ktor:ktor-client-core:$ktor_version"
+
+            // SQL Delight
+            implementation "com.squareup.sqldelight:runtime-metadata:$sqldelight_version"
+
         }
 
         androidMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib'
 
+            // COROUTINE
             implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
             implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+
+            // SERIALIZATION
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializer_version"
+
+            // KTOR
             implementation "io.ktor:ktor-client-android:$ktor_version"
+
+            // SQL Delight
+            //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
+            implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
         }
 
-        iosMain.dependencies  {
+        iosMain.dependencies {
+            // COROUTINE
             implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutine_version"
+
+            // SERIALIZATION
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serializer_version"
+
+            // KTOR
             implementation "io.ktor:ktor-client-ios:$ktor_version"
         }
-
 
 
     }
 }
 
-// workaround for https://youtrack.jetbrains.com/issue/KT-27170
-configurations {
-    compileClasspath
-}
 
 //task packForXCode(type: Sync) {
 //    final File frameworkDir = new File(buildDir, "xcode-frameworks")
@@ -93,4 +105,36 @@ task copyFramework {
             include 'app .framework.dSYM'
         }
     }
+}
+
+
+sqldelight {
+    //The package where all entities will be generated in
+    //More options https://github.com/square/sqldelight/blob/master/RELEASE_CANDIDATE.md
+    packageName = 'com.jarroyo.firstkotlinmultiplatform'
+    //Database {
+    //    packageName = "com.jarroyo.firstkotlinmultiplatform"
+    //    // By default this is ["sqldelight"], and means your sqldelight will be in
+    //    // folders like 'src/main/db' instead of 'src/main/sqldelight'
+    //    //sourceFolders = ["sqldelight"]
+
+    //    // Defaults to file("src/main/sqldelight")
+    //    //schemaOutputDirectory = file("src/main/sqldelight/migrations")
+
+    //    // Optionally specify schema dependencies on other gradle projects
+    //    //dependency project(':OtherProject')
+    //}
+    // For native targets, chose wether sqlite should be automatically linked.
+    // Defaults to true.
+    //linkSqlite = false
+
+    //QueryWrapper {
+    //    packageName = "com.jarroyo.firstkotlinmultiplatform"
+    //}
+
+}
+
+// workaround for https://youtrack.jetbrains.com/issue/KT-27170
+configurations {
+    compileClasspath
 }

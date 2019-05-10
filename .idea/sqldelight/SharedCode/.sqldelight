@@ -1,0 +1,1 @@
+{"packageName":"com.jarroyo.firstkotlinmultiplatform","sourceSets":[["src/main/sqldelight"]],"outputDirectory":"build/sqldelight","className":"Database"}

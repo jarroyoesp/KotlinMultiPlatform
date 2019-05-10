@@ -1,6 +1,7 @@
 package domain.model
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class CurrentWeather(
@@ -12,12 +13,12 @@ data class CurrentWeather(
     val id: Int,
     val main: Main?,
     val name: String,
-    val rain: Rain? = null,
     val sys: Sys?,
     val weather: MutableList<Weather>?,
     val wind: Wind?
-) {
-
+){
+    @Transient
+    val rain: Rain? = null
 }
 
 @Serializable
