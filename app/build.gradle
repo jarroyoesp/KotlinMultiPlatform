@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.microhealth.firstkotlinmultiplatform"
+        applicationId "com.jarroyo.firstkotlinmultiplatform"
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1

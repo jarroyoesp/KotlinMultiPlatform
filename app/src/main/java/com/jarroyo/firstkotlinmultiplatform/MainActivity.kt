@@ -3,6 +3,7 @@ package com.jarroyo.firstkotlinmultiplatform
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.jarroyo.kotlinmultiplatform.domain.model.Location
 import com.jarroyo.kotlinmultiplatform.requestData
 import com.jarroyo.kotlinmultiplatform.source.disk.dao.LocationDao
 import com.regin.startmultiplatform.LocationRepository
@@ -15,9 +16,13 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var mWeatherRepository: LocationRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        configView()
 
         // REQUEST DATA TO SERVICE -> INTERNET REQUIRED
         requestData(success = {
@@ -35,20 +40,28 @@ class MainActivity : AppCompatActivity() {
         val driver: SqlDriver = AndroidSqliteDriver(Database.Schema, this, "test.db")
         val locationDao = LocationDao(Database(driver))
 
-        // INSERT LOCATION ON DATABASE
-        val weatherRepository = LocationRepository(locationDao)
-        GlobalScope.launch(Main) {
-            weatherRepository.insertLocation()
-        }
 
+        mWeatherRepository = LocationRepository(locationDao)
 
         // GET LOCATION FROM DATABASE
         GlobalScope.launch(Main) {
-            val locationList = weatherRepository.getLocationList()
+            val locationList = mWeatherRepository.getLocationList()
             Toast.makeText(applicationContext, "DB: ${locationList.size}", Toast.LENGTH_SHORT).show()
         }
 
 
+    }
+
+    private fun configView() {
+        activity_main_button_add.setOnClickListener {
+            if (activity_main_et_location.text.isNotEmpty()) {
+
+                // INSERT LOCATION ON DATABASE
+                GlobalScope.launch(Main) {
+                    mWeatherRepository.insertLocation(Location(activity_main_et_location.text.toString()))
+                }
+            }
+        }
     }
 
     private fun showData(data: String) {

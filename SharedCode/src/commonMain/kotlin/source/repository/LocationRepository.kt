@@ -8,8 +8,8 @@ class LocationRepository(
     private val locationDao: LocationDao
 ) {
 
-    suspend fun insertLocation() {
-        locationDao.insert(Location("Zaragoza"))
+    suspend fun insertLocation(location: Location) {
+        locationDao.insert(location)
     }
 
     suspend fun getLocationList(): List<LocationModel> {
