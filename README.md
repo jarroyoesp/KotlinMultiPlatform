@@ -6,6 +6,7 @@ In this app we share common code for both platforms (Android/iOS) to get data fr
 
 - KTOR: to make HTTP requests [https://github.com/ktorio/ktor]
 - Serailization: to De/Serializing JSON [https://github.com/Kotlin/kotlinx.serialization]
+- SqlDelight: Local database shared on Android & iOS [https://github.com/square/sqldelight]
 
 I have followed these examples:
 
