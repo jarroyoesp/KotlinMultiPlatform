@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -14,8 +15,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
+        def STRING = "String"
+        def INT = "int"
+        all {
+            buildConfigField STRING, "DATABASE_NAME", '"First_KMPP.db"'
+        }
+
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -24,6 +33,11 @@ android {
 
     packagingOptions {
         exclude 'META-INF/*.kotlin_module'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -38,6 +52,12 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
+    // MULTI DEX
+    implementation 'androidx.multidex:multidex:2.0.0'
+    androidTestImplementation('androidx.multidex:multidex-instrumentation:2.0.0') {
+        exclude group: 'com.android.support', module: 'multidex'
+    }
+
 
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
@@ -46,6 +66,24 @@ dependencies {
     implementation project(':SharedCode')
 
 
-    //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
+    // SQL DELIGHT
     implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
+
+    // DAGGER
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    androidTestImplementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+    // BUTTERKNIFE
+    implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+}
+
+kapt {
+    generateStubs = true
 }

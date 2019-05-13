@@ -1,26 +1,32 @@
-package com.jarroyo.firstkotlinmultiplatform
+package com.jarroyo.firstkotlinmultiplatform.ui.main
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.jarroyo.firstkotlinmultiplatform.R
+import com.jarroyo.firstkotlinmultiplatform.app.di.component.ApplicationComponent
+import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivityModule
+import com.jarroyo.firstkotlinmultiplatform.ui.base.BaseActivity
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
 import com.jarroyo.kotlinmultiplatform.requestData
-import com.jarroyo.kotlinmultiplatform.source.disk.dao.LocationDao
 import com.regin.startmultiplatform.LocationRepository
-import com.squareup.sqldelight.android.AndroidSqliteDriver
-import com.squareup.sqldelight.db.SqlDriver
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+    override var layoutId = R.layout.activity_main
 
-    lateinit var mWeatherRepository: LocationRepository
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    override fun setupInjection(applicationComponent: ApplicationComponent) {
+        applicationComponent.plus(MainActivityModule(this)).injectTo(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         configView()
 
@@ -36,16 +42,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // ACCESS TO LOCAL DATA -> SQLDELIGHT
-        val driver: SqlDriver = AndroidSqliteDriver(Database.Schema, this, "test.db")
-        val locationDao = LocationDao(Database(driver))
-
-
-        mWeatherRepository = LocationRepository(locationDao)
-
         // GET LOCATION FROM DATABASE
         GlobalScope.launch(Main) {
-            val locationList = mWeatherRepository.getLocationList()
+            val locationList = locationRepository.getLocationList()
             Toast.makeText(applicationContext, "DB: ${locationList.size}", Toast.LENGTH_SHORT).show()
         }
 
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
                 // INSERT LOCATION ON DATABASE
                 GlobalScope.launch(Main) {
-                    mWeatherRepository.insertLocation(Location(activity_main_et_location.text.toString()))
+                    locationRepository.insertLocation(Location(activity_main_et_location.text.toString()))
                 }
             }
         }
