@@ -8,6 +8,8 @@ In this app we share common code for both platforms (Android/iOS) to get data fr
 - Serialization: to De/Serializing JSON [https://github.com/Kotlin/kotlinx.serialization]
 - SqlDelight: Local database shared between Android & iOS [https://github.com/square/sqldelight]
 
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/GetLocationDiagram.png" width="200">
+
 I have followed these examples:
 
 https://kotlinlang.org/docs/tutorials/native/mpp-ios-android.html
