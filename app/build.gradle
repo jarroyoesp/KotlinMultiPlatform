@@ -58,6 +58,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'multidex'
     }
 
+    implementation 'com.google.android.material:material:1.0.0-beta01'
 
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"

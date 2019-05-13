@@ -3,6 +3,8 @@ package com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
+import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocation.DeleteLocationRequest
+import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocation.DeleteLocationUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.getLocationList.GetLocationListUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationRequest
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationUseCase
@@ -24,6 +26,7 @@ class LocationViewModel
     @Inject
     constructor(private val getLocationListUseCase: GetLocationListUseCase,
                 private val saveLocationUseCase: SaveLocationUseCase,
+                private val deleteLocationUseCase: DeleteLocationUseCase,
                 private val coroutineContext: CoroutineContext)
     : ViewModel() {
 
@@ -85,13 +88,13 @@ class LocationViewModel
     }
 
     /**
-     * DELETE WEATHER LOCATION
+     * DELETE LOCATION
      */
-    /*fun deleteWeatherLocation(weatherLocation: WeatherLocation) = launchSilent(coroutineContext, job) {
-        val request = DeleteWeatherLocationRequest(weatherLocation)
-        val response = deleteWeatherLocationUseCase.execute(request)
+    fun deleteLocation(location: Location) = launchSilent(coroutineContext, job) {
+        val request = DeleteLocationRequest(location)
+        val response = deleteLocationUseCase.execute(request)
         processGetWeatherLocationListResponse(response)
-    }*/
+    }
 
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
     }

@@ -4,12 +4,14 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jarroyo.firstkotlinmultiplatform.R
 import com.jarroyo.firstkotlinmultiplatform.app.di.component.ApplicationComponent
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivityModule
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
 import com.jarroyo.firstkotlinmultiplatform.ui.base.BaseActivity
-import com.jarroyo.firstkotlinmultiplatform.ui.base.toast
+import com.jarroyo.firstkotlinmultiplatform.ui.main.adapter.LocationListRVAdapter
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.LocationViewModel
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.getLocation.ErrorGetLocationListState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.getLocation.GetLocationListState
@@ -44,6 +46,10 @@ class MainActivity : BaseActivity() {
     private lateinit var locationviewModel: LocationViewModel
     private lateinit var weatherViewModel: WeatherViewModel
 
+    // RV Adapter
+    private var mLayoutManager: LinearLayoutManager? = null
+    private var mRvAdapter: LocationListRVAdapter? = null
+
     override fun setupInjection(applicationComponent: ApplicationComponent) {
         applicationComponent.plus(MainActivityModule(this)).injectTo(this)
     }
@@ -58,12 +64,37 @@ class MainActivity : BaseActivity() {
     }
 
     private fun configView() {
+
+        configRecyclerView()
+
         activity_main_button_add.setOnClickListener {
             if (activity_main_et_location.text.isNotEmpty()) {
                 locationviewModel.saveLocation(Location(activity_main_et_location.text.toString()))
             }
         }
     }
+
+    fun configRecyclerView() {
+        mLayoutManager = LinearLayoutManager(
+            this,
+            RecyclerView.VERTICAL, false
+        )
+        activity_main_rv_location.layoutManager = mLayoutManager
+
+        mRvAdapter = LocationListRVAdapter(
+            listenerLocationClicked = {
+
+            },
+            listenerAddLocationClicked = {
+                //showDialogAddLocation()
+            }, listenerDeleteLocationClicked = {
+                deleteLocation(Location(it.locationModel.city_name))
+            }
+        )
+
+        activity_main_rv_location.adapter = mRvAdapter
+    }
+
 
     private fun configObserver() {
         ///Observer
@@ -80,6 +111,10 @@ class MainActivity : BaseActivity() {
 
     private fun getWeatherByLocation(location: Location) {
         weatherViewModel.getWeatherByLocation(location)
+    }
+
+    private fun deleteLocation(location: Location) {
+        locationviewModel.deleteLocation(location)
     }
 
     /****************************************************************************
@@ -131,7 +166,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showLocationList(locationList: List<LocationModel>) {
-        toast("Location List size ${locationList.size}")
+        mRvAdapter?.setLocationList(locationList)
+        mRvAdapter?.notifyDataSetChanged()
+
         if (locationList.isNotEmpty()) {
             getWeatherByLocation(Location(locationList.get(0).city_name))
         }

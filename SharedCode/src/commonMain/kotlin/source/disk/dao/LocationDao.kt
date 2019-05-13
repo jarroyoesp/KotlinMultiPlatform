@@ -14,5 +14,9 @@ class LocationDao(database: Database) {
         )
     }
 
+    internal fun delete(location: Location) {
+        db.deleteItem(location.cityName)
+    }
+
     internal fun select():List<LocationModel> = db.selectAll().executeAsList()
 }

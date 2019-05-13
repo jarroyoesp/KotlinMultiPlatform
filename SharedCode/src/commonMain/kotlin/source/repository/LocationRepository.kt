@@ -21,6 +21,12 @@ class LocationRepository(
         return Response.Success(locationDao.select())
     }
 
+    suspend fun deleteLocation(location: Location): Response<List<LocationModel>> {
+        val locationDao = LocationDao(database)
+        locationDao.delete(location)
+        return Response.Success(locationDao.select())
+    }
+
     fun selectFromDb() {
         val locationDao = LocationDao(database)
         locationDao.select()
