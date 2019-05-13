@@ -8,7 +8,7 @@ In this app we share common code for both platforms (Android/iOS) to get data fr
 - Serialization: to De/Serializing JSON [https://github.com/Kotlin/kotlinx.serialization]
 - SqlDelight: Local database shared between Android & iOS [https://github.com/square/sqldelight]
 
-<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/GetLocationDiagram.png" width="200">
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/GetLocationDiagram.png">
 
 I have followed these examples:
 
