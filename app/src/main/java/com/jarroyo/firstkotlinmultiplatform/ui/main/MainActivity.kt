@@ -1,5 +1,6 @@
 package com.jarroyo.firstkotlinmultiplatform.ui.main
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivit
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
 import com.jarroyo.firstkotlinmultiplatform.ui.base.BaseActivity
 import com.jarroyo.firstkotlinmultiplatform.ui.main.adapter.LocationListRVAdapter
+import com.jarroyo.firstkotlinmultiplatform.ui.main.weatherListFragment.HomeFragment
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.LocationViewModel
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.getLocation.ErrorGetLocationListState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.getLocation.GetLocationListState
@@ -33,7 +35,11 @@ import domain.model.CurrentWeather
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), HomeFragment.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+
+    }
+
     override var layoutId = R.layout.activity_main
 
     @Inject

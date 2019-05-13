@@ -8,6 +8,7 @@ import com.regin.startmultiplatform.LocationRepository
 import com.regin.startmultiplatform.WeatherRepository
 import dagger.Module
 import dagger.Provides
+import domain.usecase.location.GetLocationMPPListUseCase
 import javax.inject.Singleton
 
 
@@ -29,6 +30,11 @@ class DomainModule {
     @Provides
     @Singleton
     fun provideDeleteLocationUseCase(repository: LocationRepository) = DeleteLocationUseCase(repository)
+
+
+    @Provides
+    @Singleton
+    fun provideGetLocationMPPListUseCase(repository: LocationRepository) = GetLocationMPPListUseCase(repository)
 
     /**
      * WEATHER

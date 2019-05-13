@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">First Kotlin Multiplatform</string>
+    <string name="retry">Retry</string>
+    <string name="tempMax">Temp Max</string>
+    <string name="tempMin">Temp Min:</string>
+    <string name="wind">Wind:</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="add_location">Add location</string>
+    <string name="empty_location">No location to get Weather</string>
 </resources>

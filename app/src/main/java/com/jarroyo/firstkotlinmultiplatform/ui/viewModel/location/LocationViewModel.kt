@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocation.DeleteLocationRequest
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocation.DeleteLocationUseCase
-import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.getLocationList.GetLocationListUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationRequest
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationUseCase
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.getLocation.ErrorGetLocationListState
@@ -17,6 +16,7 @@ import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.S
 import com.jarroyo.firstkotlinmultiplatform.utils.launchSilent
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
 import domain.Response
+import domain.usecase.location.GetLocationMPPListUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import javax.inject.Inject
@@ -24,7 +24,7 @@ import kotlin.coroutines.CoroutineContext
 
 class LocationViewModel
     @Inject
-    constructor(private val getLocationListUseCase: GetLocationListUseCase,
+    constructor(private val getLocationListUseCase: GetLocationMPPListUseCase,
                 private val saveLocationUseCase: SaveLocationUseCase,
                 private val deleteLocationUseCase: DeleteLocationUseCase,
                 private val coroutineContext: CoroutineContext)

@@ -29,12 +29,20 @@
     </androidx.recyclerview.widget.RecyclerView>
 
 
+    <fragment
+            android:id="@+id/activity_main_fragment_home"
+            android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_below="@+id/activity_main_rv_location"
+              android:name="com.jarroyo.firstkotlinmultiplatform.ui.main.weatherListFragment.HomeFragment"></fragment>
+
     <TextView
             android:id="@+id/activity_main_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/activity_main_rv_location"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             android:text="Hello World!"/>
 
 </RelativeLayout>
