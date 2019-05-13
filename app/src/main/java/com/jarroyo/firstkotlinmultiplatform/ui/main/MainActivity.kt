@@ -19,14 +19,16 @@ import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.E
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.LoadingSaveLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.SaveLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.SuccessSaveLocationState
+import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.WeatherViewModel
+import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.ErrorGetWeatherByLocationState
+import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.GetWeatherByLocationState
+import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.LoadingGetWeatherByLocationState
+import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.SuccessGetWeatherByLocationState
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
-import com.jarroyo.kotlinmultiplatform.requestData
 import com.regin.startmultiplatform.LocationRepository
 import domain.Response
+import domain.model.CurrentWeather
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -40,6 +42,7 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var locationviewModel: LocationViewModel
+    private lateinit var weatherViewModel: WeatherViewModel
 
     override fun setupInjection(applicationComponent: ApplicationComponent) {
         applicationComponent.plus(MainActivityModule(this)).injectTo(this)
@@ -52,18 +55,6 @@ class MainActivity : BaseActivity() {
         configObserver()
 
         getLocationListFromViewModel()
-
-        // REQUEST DATA TO SERVICE -> INTERNET REQUIRED
-        requestData(success = {
-            GlobalScope.launch(Main) {
-                showData(it.toString())
-            }
-
-        }, failure = {
-            GlobalScope.launch(Main) {
-                activity_main_tv.text = it?.message
-            }
-        })
     }
 
     private fun configView() {
@@ -78,10 +69,17 @@ class MainActivity : BaseActivity() {
         ///Observer
         locationviewModel = ViewModelProviders.of(this, viewModelFactory).get(LocationViewModel::class.java)
         observeLocationListViewModel()
+
+        weatherViewModel = ViewModelProviders.of(this, viewModelFactory).get(WeatherViewModel::class.java)
+        observeWeatherViewModel()
     }
 
     private fun getLocationListFromViewModel() {
         locationviewModel.getLocationList()
+    }
+
+    private fun getWeatherByLocation(location: Location) {
+        weatherViewModel.getWeatherByLocation(location)
     }
 
     /****************************************************************************
@@ -134,10 +132,37 @@ class MainActivity : BaseActivity() {
 
     private fun showLocationList(locationList: List<LocationModel>) {
         toast("Location List size ${locationList.size}")
+        if (locationList.isNotEmpty()) {
+            getWeatherByLocation(Location(locationList.get(0).city_name))
+        }
+    }
+
+    /** WEATHER OBSERVER **/
+    private fun observeWeatherViewModel() {
+        weatherViewModel.getWeatherByLocationLiveData.observe(this, getWeatherByLocationStateObserver)
+    }
+
+    private val getWeatherByLocationStateObserver = Observer<GetWeatherByLocationState> { state ->
+        state?.let {
+            when (state) {
+                is SuccessGetWeatherByLocationState -> {
+                    //hideLoading()
+                    val success = it.response as Response.Success
+                    showWeather(success.data)
+                }
+                is LoadingGetWeatherByLocationState -> {
+                    //showLoading()
+                }
+                is ErrorGetWeatherByLocationState -> {
+                    //hideLoading()
+                    //showError((it as ErrorCurrentWeatherState))
+                }
+            }
+        }
     }
 
 
-    private fun showData(data: String) {
-        activity_main_tv.text = data
+    private fun showWeather(currentWeather: CurrentWeather) {
+        activity_main_tv.text = currentWeather.toString()
     }
 }

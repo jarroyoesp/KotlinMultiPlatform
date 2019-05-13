@@ -2,6 +2,7 @@ package com.jarroyo.firstkotlinmultiplatform.app.di.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.LocationViewModel
+import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.WeatherViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -18,5 +19,10 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(LocationViewModel::class)
-    abstract fun bindCurrentWeatherViewModel(viewModel: LocationViewModel): ViewModel
+    abstract fun bindLocationViewModel(viewModel: LocationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(WeatherViewModel::class)
+    abstract fun bindWeatherViewModel(viewModel: WeatherViewModel): ViewModel
 }
