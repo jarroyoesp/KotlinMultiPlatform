@@ -82,6 +82,7 @@ dependencies {
     // BUTTERKNIFE
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
     kapt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 }
 
 kapt {

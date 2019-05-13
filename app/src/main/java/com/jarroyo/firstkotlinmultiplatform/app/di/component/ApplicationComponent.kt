@@ -1,10 +1,10 @@
 package com.jarroyo.firstkotlinmultiplatform.app.di.component
 
-import com.jarroyo.firstkotlinmultiplatform.app.di.module.ApplicationModule
-import com.jarroyo.firstkotlinmultiplatform.app.di.module.DataModule
-import com.jarroyo.firstkotlinmultiplatform.app.di.module.RepositoryModule
+import com.jarroyo.firstkotlinmultiplatform.app.di.module.*
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivityComponent
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivityModule
+import com.jarroyo.firstkotlinmultiplatform.app.di.viewModel.ViewModelFactoryModule
+import com.jarroyo.firstkotlinmultiplatform.app.di.viewModel.ViewModelModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,13 +12,12 @@ import javax.inject.Singleton
 @Component(
     modules = arrayOf(
         ApplicationModule::class,
-        DataModule::class,
-        RepositoryModule::class/*,
-        UtilsModule::class,
-
         DomainModule::class,
+        RepositoryModule::class,
+        DataModule::class,
         ViewModelFactoryModule::class,
-        ViewModelModule::class*/
+        ViewModelModule::class,
+        UtilsModule::class
     )
 )
 interface ApplicationComponent {
