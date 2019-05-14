@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.10'
+    ext.kotlin_version = '1.3.31'
     repositories {
         google()
         jcenter()
@@ -15,7 +15,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-        classpath "com.squareup.sqldelight:gradle-plugin:1.0.1"
+        classpath "com.squareup.sqldelight:gradle-plugin:1.1.3"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -38,7 +38,7 @@ ext {
     serializer_version = "0.11.0"
     ktor_version = "1.1.2"
 
-    sqldelight_version = "1.0.1"
+    sqldelight_version = "1.1.3"
 
     support_library_version = '28.1.1'
     constraint_layout_version = '1.1.0'
@@ -62,7 +62,7 @@ ext {
 
     retrofitVersion = "2.3.0"
     butterknifeVersion = "10.1.0"
-    daggerVersion = "2.18"
+    daggerVersion = "2.22.1"
     picassoVersion = "2.71828"
     roomVersion = '2.0.0-beta01'
     gsonVersion = "2.8.5"

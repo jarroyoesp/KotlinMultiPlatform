@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jarroyo.firstkotlinmultiplatform.R
 import com.jarroyo.firstkotlinmultiplatform.ui.main.adapter.LocationListRVAdapter.Companion.TYPE_LOCATION
-import domain.model.CurrentWeather
+import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 import kotlinx.android.synthetic.main.item_rv_weather.view.*
 
 class HomeListRVAdapter(

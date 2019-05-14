@@ -8,9 +8,9 @@ import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLoc
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.GetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.SuccessGetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.utils.launchSilent
+import com.jarroyo.kotlinmultiplatform.domain.Response
+import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
-import domain.Response
-import domain.model.CurrentWeather
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import javax.inject.Inject

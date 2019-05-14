@@ -29,9 +29,9 @@ import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLoc
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.GetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.LoadingGetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.SuccessGetWeatherByLocationState
+import com.jarroyo.kotlinmultiplatform.domain.Response
+import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
-import domain.Response
-import domain.model.CurrentWeather
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -153,7 +153,7 @@ class HomeFragment : BaseFragment() {
                     isLoading = false
                     hideLoading()
                     hideError()
-                    val success = it.response as Response.Success
+                    val success = it.response as Response.Success<List<LocationModel>?>
                     getWeatherForLocationList(success.data)
                 }
                 is LoadingGetLocationListState -> {
@@ -182,7 +182,7 @@ class HomeFragment : BaseFragment() {
                     isLoading = false
                     hideLoading()
                     hideError()
-                    val success = it.response as Response.Success
+                    val success = it.response as Response.Success<CurrentWeather>
                     showInRVWeatherList(success.data)
                 }
                 is LoadingGetWeatherByLocationState -> {

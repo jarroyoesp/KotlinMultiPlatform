@@ -14,9 +14,9 @@ import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.E
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.SaveLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.saveLocation.SuccessSaveLocationState
 import com.jarroyo.firstkotlinmultiplatform.utils.launchSilent
+import com.jarroyo.kotlinmultiplatform.domain.Response
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
-import domain.Response
-import domain.usecase.location.GetLocationMPPListUseCase
+import com.jarroyo.kotlinmultiplatform.domain.usecase.location.GetLocationMPPListUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import javax.inject.Inject

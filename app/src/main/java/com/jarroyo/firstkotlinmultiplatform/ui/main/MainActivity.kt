@@ -28,10 +28,10 @@ import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLoc
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.GetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.LoadingGetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.SuccessGetWeatherByLocationState
+import com.jarroyo.kotlinmultiplatform.domain.Response
+import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
-import com.regin.startmultiplatform.LocationRepository
-import domain.Response
-import domain.model.CurrentWeather
+import com.jarroyo.kotlinmultiplatform.repository.LocationRepository
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -138,7 +138,7 @@ class MainActivity : BaseActivity(), HomeFragment.OnFragmentInteractionListener 
             when (state) {
                 is SuccessGetLocationListState -> {
                     //hideLoading()
-                    val success = it.response as Response.Success
+                    val success = it.response as Response.Success<List<LocationModel>>
                     showLocationList(success.data)
                 }
                 is LoadingGetLocationListState -> {
@@ -157,7 +157,7 @@ class MainActivity : BaseActivity(), HomeFragment.OnFragmentInteractionListener 
             when (state) {
                 is SuccessSaveLocationState -> {
                     //hideLoading()
-                    val success = it.response as Response.Success
+                    val success = it.response as Response.Success<List<LocationModel>>
                     showLocationList(success.data)
                 }
                 is LoadingSaveLocationState -> {
@@ -190,7 +190,7 @@ class MainActivity : BaseActivity(), HomeFragment.OnFragmentInteractionListener 
             when (state) {
                 is SuccessGetWeatherByLocationState -> {
                     //hideLoading()
-                    val success = it.response as Response.Success
+                    val success = it.response as Response.Success<CurrentWeather>
                     showWeather(success.data)
                 }
                 is LoadingGetWeatherByLocationState -> {

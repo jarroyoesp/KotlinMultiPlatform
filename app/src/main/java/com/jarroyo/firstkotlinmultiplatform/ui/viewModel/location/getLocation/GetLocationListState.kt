@@ -1,7 +1,7 @@
 package com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.getLocation
 
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
-import domain.Response
+import com.jarroyo.kotlinmultiplatform.domain.Response
 
 
 sealed class GetLocationListState {

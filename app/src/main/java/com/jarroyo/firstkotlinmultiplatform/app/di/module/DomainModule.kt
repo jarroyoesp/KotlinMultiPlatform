@@ -4,11 +4,11 @@ import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocati
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.getLocationList.GetLocationListUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherByName.GetWeatherByNameUseCase
-import com.regin.startmultiplatform.LocationRepository
-import com.regin.startmultiplatform.WeatherRepository
+import com.jarroyo.kotlinmultiplatform.domain.usecase.location.GetLocationMPPListUseCase
+import com.jarroyo.kotlinmultiplatform.repository.LocationRepository
+import com.jarroyo.kotlinmultiplatform.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
-import domain.usecase.location.GetLocationMPPListUseCase
 import javax.inject.Singleton
 
 

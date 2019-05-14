@@ -1,9 +1,9 @@
 package com.jarroyo.firstkotlinmultiplatform.app.di.module
 
 import com.jarroyo.firstkotlinmultiplatform.Database
-import com.raywenderlich.pokelist.WeatherApi
-import com.regin.startmultiplatform.LocationRepository
-import com.regin.startmultiplatform.WeatherRepository
+import com.jarroyo.kotlinmultiplatform.repository.LocationRepository
+import com.jarroyo.kotlinmultiplatform.repository.WeatherRepository
+import com.jarroyo.kotlinmultiplatform.source.network.WeatherApi
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

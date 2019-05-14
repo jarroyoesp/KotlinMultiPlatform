@@ -2,8 +2,8 @@ package com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocatio
 
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.base.BaseUseCase
-import com.regin.startmultiplatform.LocationRepository
-import domain.Response
+import com.jarroyo.kotlinmultiplatform.domain.Response
+import com.jarroyo.kotlinmultiplatform.repository.LocationRepository
 
 open class SaveLocationUseCase(val repository: LocationRepository) : BaseUseCase<SaveLocationRequest, List<LocationModel>>() {
 

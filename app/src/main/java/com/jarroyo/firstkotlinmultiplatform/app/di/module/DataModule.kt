@@ -3,7 +3,7 @@ package com.jarroyo.firstkotlinmultiplatform.app.di.module
 import com.jarroyo.firstkotlinmultiplatform.BuildConfig
 import com.jarroyo.firstkotlinmultiplatform.Database
 import com.jarroyo.firstkotlinmultiplatform.ui.App
-import com.raywenderlich.pokelist.WeatherApi
+import com.jarroyo.kotlinmultiplatform.source.network.WeatherApi
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import dagger.Module

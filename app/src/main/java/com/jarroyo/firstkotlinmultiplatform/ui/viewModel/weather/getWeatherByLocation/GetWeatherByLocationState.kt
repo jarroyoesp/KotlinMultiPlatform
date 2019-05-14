@@ -1,7 +1,7 @@
 package com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation
 
-import domain.Response
-import domain.model.CurrentWeather
+import com.jarroyo.kotlinmultiplatform.domain.Response
+import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 
 
 sealed class GetWeatherByLocationState {

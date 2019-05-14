@@ -1,6 +1,6 @@
 package com.jarroyo.firstkotlinmultiplatform.domain.usecase.base
 
-import domain.Response
+import com.jarroyo.kotlinmultiplatform.domain.Response
 import kotlinx.coroutines.channels.Channel
 
 abstract class BaseUseCase<R : BaseRequest, T>() {
