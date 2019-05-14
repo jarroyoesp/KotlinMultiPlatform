@@ -15,3 +15,5 @@ I have followed these examples:
 https://kotlinlang.org/docs/tutorials/native/mpp-ios-android.html
 
 https://www.raywenderlich.com/1022411-kotlin-multiplatform-project-for-android-and-ios-getting-started
+
+https://proandroiddev.com/kotlin-multiplatform-very-beginners-guide-part-3-database-e34c92daf41c
