@@ -1,0 +1,1 @@
+ALTER TABLE locationModel ADD COLUMN country TEXT;

@@ -10,7 +10,8 @@ class LocationDao(database: Database) {
 
     internal fun insert(item: Location) {
         db.insertItem(
-            item.cityName
+            item.cityName,
+            item.country
         )
     }
 

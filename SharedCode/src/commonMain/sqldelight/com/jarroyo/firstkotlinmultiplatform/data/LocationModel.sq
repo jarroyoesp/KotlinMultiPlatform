@@ -1,12 +1,13 @@
 
 CREATE TABLE locationModel (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    city_name TEXT NOT NULL
+    city_name TEXT NOT NULL,
+    country TEXT
 );
 
 
 insertItem:
-INSERT OR FAIL INTO locationModel(city_name) VALUES (?);
+INSERT OR FAIL INTO locationModel(city_name, country) VALUES (?, ?);
 
 
 selectAll:
