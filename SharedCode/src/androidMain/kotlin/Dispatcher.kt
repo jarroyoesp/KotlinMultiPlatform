@@ -1,4 +1,4 @@
-package com.jarroyo.kotlinmultiplatform
+package com.jarroyo.firstkotlinmultiplatform
 
 import kotlinx.coroutines.*
 

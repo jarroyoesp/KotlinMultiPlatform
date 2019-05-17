@@ -1,7 +1,7 @@
 package com.jarroyo.kotlinmultiplatform.source.network
 
 
-import com.jarroyo.kotlinmultiplatform.ApplicationDispatcher
+import com.jarroyo.firstkotlinmultiplatform.ApplicationDispatcher
 import com.jarroyo.kotlinmultiplatform.domain.Response
 import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
