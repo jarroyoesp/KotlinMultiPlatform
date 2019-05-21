@@ -27,11 +27,9 @@ import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.location.getLocation.Su
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.WeatherViewModel
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.ErrorGetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.GetWeatherByLocationState
-import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.LoadingGetWeatherByLocationState
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.SuccessGetWeatherByLocationState
 import com.jarroyo.kotlinmultiplatform.domain.Response
 import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
-import com.jarroyo.kotlinmultiplatform.domain.model.Location
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -172,30 +170,22 @@ class HomeFragment : BaseFragment() {
 
 
     private fun observeWeatherListViewModel() {
-        weatherViewModel.getWeatherByLocationLiveData.observe(this, weatherListStateObserver)
+        weatherViewModel.getWeatherListStateLiveData.observe(this, getWeatherListStateObserver)
     }
 
-    private val weatherListStateObserver = Observer<GetWeatherByLocationState> { state ->
+    private val getWeatherListStateObserver = Observer<List<GetWeatherByLocationState>> { state ->
         state?.let {
-            when (state) {
-                is SuccessGetWeatherByLocationState -> {
-                    isLoading = false
-                    hideLoading()
-                    hideError()
-                    val success = it.response as Response.Success<CurrentWeather>
-                    showInRVWeatherList(success.data)
-                }
-                is LoadingGetWeatherByLocationState -> {
-                    isLoading = true
-                    showLoading()
-                    hideError()
-                }
-                is ErrorGetWeatherByLocationState -> {
-                    isLoading = false
-                    hideLoading()
-                    //showError((it as ErrorCurrentWeatherState))
+            val weatherList = mutableListOf<CurrentWeather>()
+            for (weatherState in state) {
+                when (weatherState) {
+                    is SuccessGetWeatherByLocationState -> {
+                        val success = weatherState.response as Response.Success
+                        weatherList.add(success.data)
+                    }
                 }
             }
+
+            showInRVWeatherList(weatherList)
         }
     }
 
@@ -205,7 +195,7 @@ class HomeFragment : BaseFragment() {
      */
     private fun getWeatherForLocationList(weatherLocationList: List<LocationModel>?){
         if (weatherLocationList != null && weatherLocationList.size > 0) {
-            weatherViewModel.getWeatherByLocation(Location(weatherLocationList.get(0).city_name))
+            weatherViewModel.getWeatherList(weatherLocationList)
         } else {
             showEmptyLocationList()
         }
@@ -215,10 +205,8 @@ class HomeFragment : BaseFragment() {
     /**
      * SHOW CURRENT WEATHER
      */
-    private fun showInRVWeatherList(currentWeather: CurrentWeather?){
-        var weatherList = mutableListOf<CurrentWeather>()
-        weatherList.add(currentWeather!!)
-        mRvAdapter?.setWeatherList(weatherList)
+    private fun showInRVWeatherList(currentWeatherList: List<CurrentWeather>){
+        mRvAdapter?.setWeatherList(currentWeatherList)
         mRvAdapter?.notifyDataSetChanged()
     }
 

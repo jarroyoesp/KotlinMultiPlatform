@@ -2,6 +2,7 @@ package com.jarroyo.firstkotlinmultiplatform.app.navigator
 
 import android.content.Intent
 import android.os.Bundle
+import com.jarroyo.firstkotlinmultiplatform.ui.account.fragment.AccountFragment
 import com.jarroyo.firstkotlinmultiplatform.ui.base.BaseActivity
 
 class Navigator {
@@ -47,10 +48,10 @@ class Navigator {
     /***********************************************************************************************
      *  FRAGMENTS
      **********************************************************************************************/
-    /*fun addAccountFragment(contentIdLayout : Int) {
+    fun addAccountFragment(contentIdLayout : Int) {
         var accountFragment = AccountFragment.newInstance()
         val ft = currentActivity?.supportFragmentManager?.beginTransaction()
         ft?.addToBackStack(AccountFragment::class.java.simpleName)
         ft?.add(contentIdLayout, accountFragment)?.commit()
-    }*/
+    }
 }

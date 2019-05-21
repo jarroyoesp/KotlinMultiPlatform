@@ -1,6 +1,8 @@
 package com.jarroyo.firstkotlinmultiplatform.app.di.component
 
 import com.jarroyo.firstkotlinmultiplatform.app.di.module.*
+import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.account.AccountFragmentComponent
+import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.account.AccountFragmentModule
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivityComponent
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivityModule
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.homeFragment.HomeFragmentComponent
@@ -27,6 +29,11 @@ interface ApplicationComponent {
      * UI - ACTIVITY
      */
     fun plus(module: MainActivityModule): MainActivityComponent
+
+    /**
+     * FRAGMENT
+     */
     fun plus(module: HomeFragmentModule): HomeFragmentComponent
+    fun plus(module: AccountFragmentModule): AccountFragmentComponent
 
 }
