@@ -1,5 +1,9 @@
 package com.jarroyo.kotlinmultiplatform
 
+import com.jarroyo.firstkotlinmultiplatform.Database
+
+expect fun getDataBase(): Database
+
 //fun createDatabase(driver: SqlDriver): Database {
 //    //val coordinateAdapter = object : ColumnAdapter<Coordinate, String> {
 //    //    override fun decode(databaseValue: String): Coordinate {

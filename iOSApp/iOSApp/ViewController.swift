@@ -12,8 +12,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        // Get Data From Remote
         WeatherApi().getCurrentWeather(
             success:
             { data in
@@ -23,6 +23,26 @@ class ViewController: UIViewController {
             failure: {
                 print($0?.message)
                 return KotlinUnit()
+        })
+        
+        // Save in DB
+        LocationRepository().saveAsync(success:
+           { data in
+               print(data)
+               return KotlinUnit()
+           },
+           failure: {
+               print($0?.message)
+               return KotlinUnit()
+        })
+        
+        // Get data From Database
+        LocationRepository().getLocationListAsync(success: { data in
+            print(data)
+            return KotlinUnit()
+        }, failure: {
+            print($0?.message)
+            return KotlinUnit()
         })
         
     }
