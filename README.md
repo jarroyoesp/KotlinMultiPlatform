@@ -12,11 +12,11 @@ In this app we share common code for both platforms (Android/iOS) to get data fr
 
 With this app you can get the weather of your locations using KTor:
 
-<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/AndroidCaptureWeather.png">
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/AndroidCaptureWeather.png" width="200">
 
 And add and save on SQLDelight database your favourite locations:
 
-<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/AndroidCaptureLocationList.png">
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/AndroidCaptureLocationList.png" width="200">
 
 
 I have followed these examples:
