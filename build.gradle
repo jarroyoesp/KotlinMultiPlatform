@@ -11,7 +11,7 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-beta01'
+        classpath 'com.android.tools.build:gradle:3.5.0-beta01' // 3.4.0(for Android) or 3.5.0-beta01(for iOS)
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"

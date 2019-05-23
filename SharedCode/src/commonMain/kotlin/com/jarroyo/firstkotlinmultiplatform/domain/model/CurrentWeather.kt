@@ -14,11 +14,13 @@ data class CurrentWeather(
     val main: Main?,
     val name: String,
     val sys: Sys?,
-    val weather: MutableList<Weather>?,
-    val wind: Wind?
+    val weather: MutableList<Weather>?
 ){
     @Transient
     val rain: Rain? = null
+
+    @Transient
+    val wind: Wind? = null
 }
 
 @Serializable

@@ -2,7 +2,10 @@ package com.jarroyo.kotlinmultiplatform
 
 import com.jarroyo.firstkotlinmultiplatform.Database
 
-expect fun getDataBase(): Database?
+actual fun getDataBase(): Database? {
+    // On Android Database is passed from the app
+    return null
+}
 
 //fun createDatabase(driver: SqlDriver): Database {
 //    //val coordinateAdapter = object : ColumnAdapter<Coordinate, String> {
