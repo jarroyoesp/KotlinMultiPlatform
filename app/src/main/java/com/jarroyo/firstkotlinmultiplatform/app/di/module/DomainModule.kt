@@ -4,6 +4,7 @@ import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocati
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.getLocationList.GetLocationListUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherByName.GetWeatherByNameUseCase
+import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherList.GetWeatherListUseCase
 import com.jarroyo.kotlinmultiplatform.domain.usecase.location.GetLocationMPPListUseCase
 import com.jarroyo.kotlinmultiplatform.repository.LocationRepository
 import com.jarroyo.kotlinmultiplatform.repository.WeatherRepository
@@ -42,4 +43,8 @@ class DomainModule {
     @Provides
     @Singleton
     fun provideGetWeatherUseCase(repository: WeatherRepository) = GetWeatherByNameUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetWeatherListUseCase(repository: WeatherRepository) = GetWeatherListUseCase(repository)
 }

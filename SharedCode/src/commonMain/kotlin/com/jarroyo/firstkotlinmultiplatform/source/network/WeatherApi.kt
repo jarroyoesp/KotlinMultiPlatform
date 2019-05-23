@@ -19,7 +19,7 @@ class WeatherApi {
         GlobalScope.launch(ApplicationDispatcher) {
             try {
                 val url =
-                    "https://api.openweathermap.org/data/2.5/weather?q=Zaragoza&APPID=f11780da3330643cd659bb6dbb4e44a3"
+                    "https://api.openweathermap.org/data/2.5/weather?q=Zaragoza&APPID=f11780da3330643cd659bb6dbb4e44a3&units=metric"
                 val json = httpClient.get<String>(url)
 
                 Json.nonstrict.parse(CurrentWeather.serializer(), json)
@@ -33,7 +33,7 @@ class WeatherApi {
     suspend fun getWeather(location: Location): Response<CurrentWeather> {
         try {
             val url =
-                "https://api.openweathermap.org/data/2.5/weather?q=${location.cityName}&APPID=f11780da3330643cd659bb6dbb4e44a3"
+                "https://api.openweathermap.org/data/2.5/weather?q=${location.cityName}&APPID=f11780da3330643cd659bb6dbb4e44a3&units=metric"
             val json = httpClient.get<String>(url)
             val currentWeather = Json.nonstrict.parse(CurrentWeather.serializer(), json)
 

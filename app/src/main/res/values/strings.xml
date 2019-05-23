@@ -8,4 +8,9 @@
     <string name="sunset">Sunset</string>
     <string name="add_location">Add location</string>
     <string name="empty_location">No location to get Weather</string>
+    <string name="navigation_forecast">Forecast</string>
+    <string name="navigation_account">Account</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
