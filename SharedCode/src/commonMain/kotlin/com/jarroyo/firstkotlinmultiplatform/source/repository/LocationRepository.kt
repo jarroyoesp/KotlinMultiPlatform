@@ -57,11 +57,10 @@ class LocationRepository() {
         locationDao.select()
     }
 
-    fun saveAsync(success: (Location) -> Unit, failure: (Throwable?) -> Unit) {
+    fun saveAsync(location: Location, success: (Location) -> Unit, failure: (Throwable?) -> Unit) {
         GlobalScope.launch(ApplicationDispatcher) {
             try {
                 val locationDao = LocationDao(database!!)
-                val location = Location("Zaragoza", "Spain")
                 locationDao.insert(location)
                 success(location)
             } catch (ex: Exception) {
