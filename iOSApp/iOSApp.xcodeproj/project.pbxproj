@@ -144,10 +144,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DCCC91228E9AED002D78DC /* Build configuration list for PBXNativeTarget "iOSApp" */;
 			buildPhases = (
+				04DCCC9A228E9BDF002D78DC /* ShellScript */,
 				04DCCC65228E9AEC002D78DC /* Sources */,
 				04DCCC66228E9AEC002D78DC /* Frameworks */,
 				04DCCC67228E9AEC002D78DC /* Resources */,
-				04DCCC9A228E9BDF002D78DC /* ShellScript */,
 			);
 			buildRules = (
 			);
