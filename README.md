@@ -10,6 +10,8 @@ In this app we share common code for both platforms (Android/iOS) to get data fr
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/GetLocationDiagram.png">
 
+### Android App - Master Branch
+
 With this app you can get the weather of your locations using KTor:
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/AndroidCaptureWeather.png" width="200">
@@ -18,6 +20,10 @@ And add and save on SQLDelight database your favourite locations:
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/AndroidCaptureLocationList.png" width="200">
 
+### iOS App - iOSApp Branch
+If you choose the branch iOSApp you can see this app:
+
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/iOS_App.png" width="200">
 
 I have followed these examples:
 
