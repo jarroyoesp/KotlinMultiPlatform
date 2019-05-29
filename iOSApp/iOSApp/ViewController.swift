@@ -13,6 +13,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var responseLabel: UILabel!
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var locationEditText: UITextField!
+    @IBOutlet weak var tempMaxLabel: UILabel!
+    @IBOutlet weak var tempMinLabel: UILabel!
+    @IBOutlet weak var weatherLabel: UILabel!
     
     internal var locationList: [LocationModel] = []
     
@@ -24,33 +27,55 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         addLocationButton.addTarget(self, action: #selector(didButtonClick), for: .touchUpInside)
 
-        // Get Data From Remote
-        WeatherApi().getCurrentWeather(
-            success:
-            { data in
+        getLocationList()
+    }
+    
+    /*
+     * GET LOCATION LIST
+     */
+    internal func getLocationList() {
+        // Get Locations From Database
+        LocationRepository().getLocationListAsync(
+            success: { data in
                 print(data)
-                self.responseLabel.text = data.name
+                self.update(data: data)
                 return KotlinUnit()
-        },
+            },
             failure: {
                 print($0?.message)
                 return KotlinUnit()
-        })
-
+            }
+        )
+    }
+    
+    /*
+     * GET CURRENT WEATHER
+     */
+    internal func getCurrentWeather(_ cityName: String) {
+        let location = Location(cityName: cityName, country: "Spain")
         
-
-
-        // Get data From Database
-        LocationRepository().getLocationListAsync(success: { data in
-            print(data)
-            self.update(data: data)
-            return KotlinUnit()
-        }, failure: {
-            print($0?.message)
-            return KotlinUnit()
-        })
-
-   }
+        // Get Data From Remote
+        WeatherApi().getCurrentWeather(location: location,
+            success:
+            { data in
+                print(data)                
+                
+                self.responseLabel.text = data.name
+                self.tempMaxLabel.text = String(format:"%f ºC", data.main!.temp_max)
+                self.tempMinLabel.text = String(format:"%f ºC", data.main!.temp_min)
+                self.weatherLabel.text = data.weather!.description
+                return KotlinUnit()
+            },
+            failure: {
+                print($0?.message)
+                return KotlinUnit()
+            }
+        )
+    }
+    
+    /*
+     * ON CLICKS
+     */
     @objc func didButtonClick(_ sender: UIButton) {
         let cityName = locationEditText.text
         if (cityName != nil) {
@@ -58,14 +83,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    /*
+     * SAVE LOCATION ON DATABASE SQLDelight
+     */
     internal func saveLocationOnDataBase(_ cityName: String?) {
-        
         let location = Location(cityName: cityName!, country: "Spain")
         // Save in DB
         LocationRepository().saveAsync(location: location,
             success:
             { data in
-                print(data)
+                self.locationEditText.text = ""
+                self.update(data: data)
                 return KotlinUnit()
         },
             failure: {
@@ -97,8 +125,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //let entryNum = locationList[indexPath.row].entry_number
-        //loadPokemonBy(id: entryNum)
+        let entryNum = locationList[indexPath.row].city_name
+        getCurrentWeather(entryNum)
     }
 
 }
