@@ -4,9 +4,9 @@ This example shows how to create a simple Android/iOS project sharing some Kotli
 
 In this app we share common code for both platforms (Android/iOS) to get data from an API (in this case OpenWeatherMap). The libraries that we use are:
 
-- KTOR: to make HTTP requests [https://github.com/ktorio/ktor]
-- Serialization: to De/Serializing JSON [https://github.com/Kotlin/kotlinx.serialization]
-- SqlDelight: Local database shared between Android & iOS [https://github.com/square/sqldelight]
+- [KTOR](https://github.com/ktorio/ktor): to make HTTP requests
+- [Serialization](https://github.com/Kotlin/kotlinx.serialization): to De/Serializing JSON 
+- [SqlDelight](https://github.com/square/sqldelight): Local database shared between Android & iOS 
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/GetLocationDiagram.png">
 
