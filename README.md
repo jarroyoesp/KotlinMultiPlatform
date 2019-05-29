@@ -21,7 +21,7 @@ And add and save on SQLDelight database your favourite locations:
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/AndroidCaptureLocationList.png" width="200">
 
 ### iOS App - iOSApp Branch
-If you choose the branch iOSApp you can see this app
+If you choose the branch iOSApp you can see this app:
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/iOS_App.png" width="200">
 
