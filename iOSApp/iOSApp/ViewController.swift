@@ -55,15 +55,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let location = Location(cityName: cityName, country: "Spain")
         
         // Get Data From Remote
-        WeatherApi().getCurrentWeather(location: location,
+        let  weatherApi = WeatherApi()
+        WeatherRepository(weatherApi: weatherApi).getCurrentWeather(location: location,
             success:
             { data in
-                print(data)                
-                
-                self.responseLabel.text = data.name
-                self.tempMaxLabel.text = String(format:"%f ºC", data.main!.temp_max)
-                self.tempMinLabel.text = String(format:"%f ºC", data.main!.temp_min)
-                self.weatherLabel.text = data.weather!.description
+                self.showCurrentWeather(data)
                 return KotlinUnit()
             },
             failure: {
@@ -71,6 +67,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 return KotlinUnit()
             }
         )
+    }
+    
+    /**
+    * SHOW CURRENT WEATHER
+    */
+    internal func showCurrentWeather(_ data: CurrentWeather) {
+        print(data)
+        self.responseLabel.text = data.name
+        self.tempMaxLabel.text = String(format:"%f ºC", data.main!.temp_max)
+        self.tempMinLabel.text = String(format:"%f ºC", data.main!.temp_min)
+        self.weatherLabel.text = data.weather!.description
     }
     
     /*

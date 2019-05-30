@@ -1,32 +1,27 @@
 package com.jarroyo.kotlinmultiplatform.source.network
 
 
-import com.jarroyo.firstkotlinmultiplatform.ApplicationDispatcher
 import com.jarroyo.kotlinmultiplatform.domain.Response
 import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
 class WeatherApi {
 
     private val httpClient = HttpClient()
 
-    fun getCurrentWeather(location: Location, success: (CurrentWeather) -> Unit, failure: (Throwable?) -> Unit) {
-        GlobalScope.launch(ApplicationDispatcher) {
-            try {
-                val url =
-                    "https://api.openweathermap.org/data/2.5/weather?q=${location.cityName}&APPID=f11780da3330643cd659bb6dbb4e44a3&units=metric"
-                val json = httpClient.get<String>(url)
+    suspend fun getCurrentWeather(location: Location, success: (CurrentWeather) -> Unit, failure: (Throwable?) -> Unit) {
+        try {
+            val url =
+                "https://api.openweathermap.org/data/2.5/weather?q=${location.cityName}&APPID=f11780da3330643cd659bb6dbb4e44a3&units=metric"
+            val json = httpClient.get<String>(url)
 
-                Json.nonstrict.parse(CurrentWeather.serializer(), json)
-                    .also(success)
-            } catch (ex: Exception) {
-                failure(ex)
-            }
+            Json.nonstrict.parse(CurrentWeather.serializer(), json)
+                .also(success)
+        } catch (ex: Exception) {
+            failure(ex)
         }
     }
 
