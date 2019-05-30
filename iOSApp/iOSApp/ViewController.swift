@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tempMinLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
     
-    internal var locationList: [LocationModel] = []
+    internal var mLocationList: [LocationModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +36,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     internal func getLocationList() {
         // Get Locations From Database
         LocationRepository().getLocationListAsync(
-            success: { data in
-                print(data)
-                self.update(data: data)
+            success: { locationListResponse in
+                print(locationListResponse)
+                self.update(locationList: locationListResponse)
                 return KotlinUnit()
             },
             failure: {
@@ -58,8 +58,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let  weatherApi = WeatherApi()
         WeatherRepository(weatherApi: weatherApi).getCurrentWeather(location: location,
             success:
-            { data in
-                self.showCurrentWeather(data)
+            { currentWeather in
+                self.showCurrentWeather(currentWeather)
                 return KotlinUnit()
             },
             failure: {
@@ -72,12 +72,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     /**
     * SHOW CURRENT WEATHER
     */
-    internal func showCurrentWeather(_ data: CurrentWeather) {
-        print(data)
-        self.responseLabel.text = data.name
-        self.tempMaxLabel.text = String(format:"%f ºC", data.main!.temp_max)
-        self.tempMinLabel.text = String(format:"%f ºC", data.main!.temp_min)
-        self.weatherLabel.text = data.weather!.description
+    internal func showCurrentWeather(_ currentWeather: CurrentWeather) {
+        print(currentWeather)
+        self.responseLabel.text = currentWeather.name
+        self.tempMaxLabel.text = String(format:"%f ºC", currentWeather.main!.temp_max)
+        self.tempMinLabel.text = String(format:"%f ºC", currentWeather.main!.temp_min)
+        self.weatherLabel.text = currentWeather.weather!.description
     }
     
     /*
@@ -98,9 +98,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Save in DB
         LocationRepository().saveAsync(location: location,
             success:
-            { data in
+            { locationListResponse in
                 self.locationEditText.text = ""
-                self.update(data: data)
+                self.update(locationList: locationListResponse)
                 return KotlinUnit()
         },
             failure: {
@@ -112,19 +112,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     /**
      TABLE VIEW
      */
-    internal func update(data: [LocationModel]) {
-        locationList.removeAll()
-        locationList.append(contentsOf: data)
+    internal func update(locationList: [LocationModel]) {
+        mLocationList.removeAll()
+        mLocationList.append(contentsOf: locationList)
         locationTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationList.count
+        return mLocationList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationListCell", for: indexPath)
-        let entry = locationList[indexPath.row]
+        let entry = mLocationList[indexPath.row]
         
         cell.textLabel?.text = entry.city_name
         return cell
@@ -132,7 +132,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let entryNum = locationList[indexPath.row].city_name
+        let entryNum = mLocationList[indexPath.row].city_name
         getCurrentWeather(entryNum)
     }
 
