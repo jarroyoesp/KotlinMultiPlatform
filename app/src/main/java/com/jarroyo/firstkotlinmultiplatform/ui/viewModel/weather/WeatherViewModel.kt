@@ -3,8 +3,8 @@ package com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
-import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherByName.GetWeatherByNameRequest
-import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherByName.GetWeatherByNameUseCase
+import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeather.GetWeatherByNameRequest
+import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeather.GetWeatherByNameUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherList.GetWeatherListRequest
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherList.GetWeatherListUseCase
 import com.jarroyo.firstkotlinmultiplatform.ui.viewModel.weather.getWeatherByLocation.ErrorGetWeatherByLocationState
