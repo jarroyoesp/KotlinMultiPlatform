@@ -35,7 +35,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
      */
     internal func getLocationList() {
         // Get Locations From Database
-        LocationRepository().getLocationListAsync(
+        let dbArgs =  DbArgs()
+        LocationRepository(dbArgs: dbArgs).getLocationListAsync(
             success: { locationListResponse in
                 print(locationListResponse)
                 self.update(locationList: locationListResponse)
@@ -96,7 +97,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     internal func saveLocationOnDataBase(_ cityName: String?) {
         let location = Location(cityName: cityName!, country: "Spain")
         // Save in DB
-        LocationRepository().saveAsync(location: location,
+        let dbArgs =  DbArgs()
+        LocationRepository(dbArgs: dbArgs).saveAsync(location: location,
             success:
             { locationListResponse in
                 self.locationEditText.text = ""
