@@ -1,11 +1,7 @@
 package com.jarroyo.firstkotlinmultiplatform.app.di.module
 
 import com.jarroyo.firstkotlinmultiplatform.di.InjectorCommon
-import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocation.DeleteLocationUseCase
-import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.getLocationList.GetLocationListUseCase
-import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationUseCase
-import com.jarroyo.kotlinmultiplatform.domain.usecase.location.GetLocationMPPListUseCase
-import com.jarroyo.kotlinmultiplatform.repository.LocationRepository
+import com.jarroyo.firstkotlinmultiplatform.source.disk.DbArgs
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,23 +13,20 @@ class DomainModule {
     /**
      * LOCATION
      */
-    @Provides
-    @Singleton
-    fun provideGetLocationListUseCase(repository: LocationRepository) = GetLocationListUseCase(repository)
 
 
     @Provides
     @Singleton
-    fun provideSaveLocationUseCase(repository: LocationRepository) = SaveLocationUseCase(repository)
+    fun provideSaveLocationUseCase(dbArgs: DbArgs) = InjectorCommon.provideSaveLocationUseCase(dbArgs)
 
     @Provides
     @Singleton
-    fun provideDeleteLocationUseCase(repository: LocationRepository) = DeleteLocationUseCase(repository)
+    fun provideDeleteLocationUseCase(dbArgs: DbArgs) = InjectorCommon.provideDeleteLocationUseCase(dbArgs)
 
 
     @Provides
     @Singleton
-    fun provideGetLocationMPPListUseCase(repository: LocationRepository) = GetLocationMPPListUseCase(repository)
+    fun provideGetLocationMPPListUseCase(dbArgs: DbArgs) = InjectorCommon.provideGetLocationMPPUseCase(dbArgs)
 
     /**
      * WEATHER

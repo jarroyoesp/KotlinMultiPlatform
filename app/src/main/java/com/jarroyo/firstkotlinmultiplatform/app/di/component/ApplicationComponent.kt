@@ -1,6 +1,9 @@
 package com.jarroyo.firstkotlinmultiplatform.app.di.component
 
-import com.jarroyo.firstkotlinmultiplatform.app.di.module.*
+import com.jarroyo.firstkotlinmultiplatform.app.di.module.ApplicationModule
+import com.jarroyo.firstkotlinmultiplatform.app.di.module.DataModule
+import com.jarroyo.firstkotlinmultiplatform.app.di.module.DomainModule
+import com.jarroyo.firstkotlinmultiplatform.app.di.module.UtilsModule
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.account.AccountFragmentComponent
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.account.AccountFragmentModule
 import com.jarroyo.firstkotlinmultiplatform.app.di.subcomponent.main.MainActivityComponent
@@ -17,7 +20,6 @@ import javax.inject.Singleton
     modules = arrayOf(
         ApplicationModule::class,
         DomainModule::class,
-        RepositoryModule::class,
         DataModule::class,
         ViewModelFactoryModule::class,
         ViewModelModule::class,

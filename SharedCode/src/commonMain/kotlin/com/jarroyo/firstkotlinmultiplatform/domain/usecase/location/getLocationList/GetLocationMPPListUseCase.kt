@@ -1,4 +1,4 @@
-package com.jarroyo.kotlinmultiplatform.domain.usecase.location
+package com.jarroyo.kotlinmultiplatform.domain.usecase.location.getLocationList
 
 import com.jarroyo.firstkotlinmultiplatform.data.LocationModel
 import com.jarroyo.kotlinmultiplatform.domain.Response
