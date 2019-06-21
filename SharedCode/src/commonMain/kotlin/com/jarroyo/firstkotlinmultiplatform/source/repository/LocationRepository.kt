@@ -8,7 +8,6 @@ import com.jarroyo.kotlinmultiplatform.domain.model.Location
 import com.jarroyo.kotlinmultiplatform.source.disk.dao.LocationDao
 
 class LocationRepository(
-    //private val database: Database,
     private val dbArgs: DbArgs
 ) {
 
