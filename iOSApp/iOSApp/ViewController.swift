@@ -8,7 +8,9 @@
 
 import UIKit
 import SharedCode
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ProfileView {
+    
     @IBOutlet weak var locationTableView: UITableView!
     @IBOutlet weak var responseLabel: UILabel!
     @IBOutlet weak var addLocationButton: UIButton!
@@ -19,55 +21,66 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     internal var mLocationList: [LocationModel] = []
     
+    private var presenter: ProfilePresenter!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initPresenter()
         
         locationTableView.dataSource = self
         locationTableView.delegate = self
         
         addLocationButton.addTarget(self, action: #selector(didButtonClick), for: .touchUpInside)
-
-        getLocationList()
     }
     
-    /*
-     * GET LOCATION LIST
-     */
-    internal func getLocationList() {
-        // Get Locations From Database
-        let dbArgs =  DbArgs()
-        LocationRepository(dbArgs: dbArgs).getLocationListAsync(
-            success: { locationListResponse in
-                print(locationListResponse)
-                self.update(locationList: locationListResponse)
-                return KotlinUnit()
-            },
-            failure: {
-                print($0?.message)
-                return KotlinUnit()
-            }
-        )
-    }
-    
-    /*
-     * GET CURRENT WEATHER
-     */
-    internal func getCurrentWeather(_ cityName: String) {
-        let location = Location(cityName: cityName, country: "Spain")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.attachView(view: self)
         
-        // Get Data From Remote
-        let  weatherApi = WeatherApi()
-        WeatherRepository(weatherApi: weatherApi).getCurrentWeather(location: location,
-            success:
-            { currentWeather in
-                self.showCurrentWeather(currentWeather)
-                return KotlinUnit()
-            },
-            failure: {
-                print($0?.message)
-                return KotlinUnit()
-            }
-        )
+        presenter.getLocationList()
+    }
+ 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.detachView()
+    }
+    
+    private func initPresenter() {
+        var dbArgsPar =  DbArgs()
+        presenter = InjectorCommon.init().provideProfilePresenter(dbArgs: dbArgsPar)
+    }
+    
+    /**
+    * PRESENTATION VIEW
+    **/
+    func onSuccessGetLocationList(locationList: [LocationModel]) {
+        self.update(locationList: locationList)
+    }
+    
+    func onErrorGetLocationList(throwable: KotlinThrowable) {
+    
+    }
+    
+    func showHideLoading(visible: Bool) {
+        
+    }
+    
+    func onSuccessGetCurrentWeather(currentWeather: CurrentWeather) {
+        self.showCurrentWeather(currentWeather)
+    }
+    
+    func onErrorGetCurrentWeather(throwable: KotlinThrowable) {
+        
+    }
+    
+    func onSuccessSaveLocation(locationList: [LocationModel]) {
+        self.locationEditText.text = ""
+        self.update(locationList: locationList)
+    }
+    
+    func onErrorSaveLocation(throwable: KotlinThrowable) {
+        
     }
     
     /**
@@ -87,28 +100,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @objc func didButtonClick(_ sender: UIButton) {
         let cityName = locationEditText.text
         if (cityName != nil) {
-            saveLocationOnDataBase(cityName)
+            let locationPar = Location(cityName: cityName!, country: "Spain")
+            presenter.saveLocation(location: locationPar)
         }
-    }
-    
-    /*
-     * SAVE LOCATION ON DATABASE SQLDelight
-     */
-    internal func saveLocationOnDataBase(_ cityName: String?) {
-        let location = Location(cityName: cityName!, country: "Spain")
-        // Save in DB
-        let dbArgs =  DbArgs()
-        LocationRepository(dbArgs: dbArgs).saveAsync(location: location,
-            success:
-            { locationListResponse in
-                self.locationEditText.text = ""
-                self.update(locationList: locationListResponse)
-                return KotlinUnit()
-        },
-            failure: {
-                print($0?.message)
-                return KotlinUnit()
-        })
     }
     
     /**
@@ -135,7 +129,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let entryNum = mLocationList[indexPath.row].city_name
-        getCurrentWeather(entryNum)
+        let location = Location(cityName: entryNum, country: "Spain")
+        presenter.getCurrentWeather(location: location)
     }
 
 }

@@ -4,13 +4,15 @@ import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.deleteLocati
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.location.saveLocation.SaveLocationUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeather.GetWeatherByNameUseCase
 import com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeatherList.GetWeatherListUseCase
+import com.jarroyo.firstkotlinmultiplatform.presentation.ProfilePresenter
 import com.jarroyo.firstkotlinmultiplatform.source.disk.DbArgs
 import com.jarroyo.kotlinmultiplatform.domain.usecase.location.getLocationList.GetLocationMPPListUseCase
 import com.jarroyo.kotlinmultiplatform.repository.LocationRepository
 import com.jarroyo.kotlinmultiplatform.repository.WeatherRepository
 import com.jarroyo.kotlinmultiplatform.source.network.WeatherApi
+import kotlin.native.concurrent.ThreadLocal
 
-
+@ThreadLocal
 object InjectorCommon {
 
     /**
@@ -53,6 +55,13 @@ object InjectorCommon {
     fun provideSaveLocationUseCase(dbArgs: DbArgs): SaveLocationUseCase {
         mDbArgs = dbArgs
         return SaveLocationUseCase(locationRepository)
+    }
+
+    /**
+     * PRESENTER
+     */
+    fun provideProfilePresenter(dbArgs: DbArgs): ProfilePresenter {
+        return ProfilePresenter(provideGetLocationMPPUseCase(dbArgs), provideGetWeatherUseCase(), provideSaveLocationUseCase(dbArgs))
     }
 
 }
