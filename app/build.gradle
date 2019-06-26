@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.jarroyo.firstkotlinmultiplatform"
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

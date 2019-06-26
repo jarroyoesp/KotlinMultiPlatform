@@ -9,7 +9,7 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 28
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
@@ -101,6 +101,27 @@ kotlin {
             implementation "io.ktor:ktor-client-ios:$ktor_version"
         }
 
+        commonTest {
+            dependencies {
+                implementation kotlin('test-common')
+                implementation kotlin('test-annotations-common')
+                implementation "io.mockk:mockk:1.9.3"
+            }
+        }
+
+        androidTest {
+            dependencies {
+                implementation kotlin('test')
+                implementation kotlin('test-junit')
+                implementation 'com.android.support.test:runner:1.0.2'
+
+                // actually not needed, see https://youtrack.jetbrains.com/issue/KT-31189
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializer_version"
+                implementation "com.soywiz:klock-android:$klock_version"
+
+                implementation "io.mockk:mockk:1.9.3"
+            }
+        }
 
     }
 }
