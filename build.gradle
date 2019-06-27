@@ -8,6 +8,7 @@ buildscript {
 
         mavenCentral()
         maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://dl.bintray.com/soywiz/soywiz" }
         
     }
     dependencies {
@@ -29,6 +30,7 @@ allprojects {
 
         mavenCentral()
         maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://dl.bintray.com/soywiz/soywiz" }
     }
 }
 
@@ -71,6 +73,8 @@ ext {
     GsonVersion = "2.8.4"
     work_manager_version = '1.0.0'
     androidPlotVersion = "1.5.6"
+
+    klock_version = "1.4.0"
 
 
 }

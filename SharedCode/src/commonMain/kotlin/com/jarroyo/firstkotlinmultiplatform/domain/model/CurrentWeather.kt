@@ -14,6 +14,7 @@ data class CurrentWeather(
     val main: Main?,
     val name: String,
     val sys: Sys?,
+    val timezone: Int,
     val weather: MutableList<Weather>?
 ){
     @Transient
@@ -35,7 +36,8 @@ data class Main(
 @Serializable
 data class Wind(
     val deg: Double,
-    val speed: Double
+    val speed: Double,
+    val gust: Double
 )
 
 @Serializable
