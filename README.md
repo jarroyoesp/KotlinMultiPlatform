@@ -8,6 +8,10 @@ In this app we share common code for both platforms (Android/iOS) to get data fr
 - [Serialization](https://github.com/Kotlin/kotlinx.serialization): to De/Serializing JSON 
 - [SqlDelight](https://github.com/square/sqldelight): Local database shared between Android & iOS 
 
+Tests:
+
+- [MockK](https://mockk.io/#gradlemaven-dependency): mocking library for Kotlin
+
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/GetLocationDiagram.png">
 
 ### Android App - Master Branch
