@@ -1,5 +1,5 @@
 package com.jarroyo.firstkotlinmultiplatform
 
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlin.coroutines.CoroutineContext
 
-internal expect val ApplicationDispatcher: CoroutineDispatcher
+internal expect val ApplicationDispatcher: CoroutineContext

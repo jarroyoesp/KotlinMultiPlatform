@@ -6,7 +6,7 @@ import platform.darwin.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.native.concurrent.freeze
 
-internal actual val ApplicationDispatcher: CoroutineDispatcher =
+internal actual val ApplicationDispatcher: CoroutineContext =
     NsQueueDispatcher(dispatch_get_main_queue())
 
 internal class NsQueueDispatcher(

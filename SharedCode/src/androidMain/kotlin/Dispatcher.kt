@@ -1,5 +1,6 @@
 package com.jarroyo.firstkotlinmultiplatform
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
 
-internal actual val ApplicationDispatcher: CoroutineDispatcher = Dispatchers.Default
+internal actual val ApplicationDispatcher: CoroutineContext = Dispatchers.Default
