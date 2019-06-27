@@ -1,7 +1,7 @@
 package com.jarroyo.firstkotlinmultiplatform.domain.model
 
+import com.jarroyo.firstkotlinmultiplatform.TestUtils
 import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
-import de.moviesmpp.TestUtils
 import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 import kotlin.test.Test

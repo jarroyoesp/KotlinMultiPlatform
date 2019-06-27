@@ -1,10 +1,10 @@
 package com.jarroyo.firstkotlinmultiplatform.domain.usecase.weather.getWeather
 
+import com.jarroyo.firstkotlinmultiplatform.TestUtils
 import com.jarroyo.kotlinmultiplatform.domain.Response
 import com.jarroyo.kotlinmultiplatform.domain.model.CurrentWeather
 import com.jarroyo.kotlinmultiplatform.domain.model.Location
 import com.jarroyo.kotlinmultiplatform.repository.WeatherRepository
-import de.moviesmpp.TestUtils
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.serialization.json.Json

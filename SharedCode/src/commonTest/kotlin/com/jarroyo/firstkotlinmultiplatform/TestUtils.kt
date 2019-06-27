@@ -1,4 +1,4 @@
-package de.moviesmpp
+package com.jarroyo.firstkotlinmultiplatform
 
 
 object TestUtils {
