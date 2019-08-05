@@ -33,10 +33,14 @@ data class Main(
 
 @Serializable
 data class Wind(
-    val deg: Double,
-    val speed: Double,
-    val gust: Double
-)
+    val speed: Double
+) {
+    @Transient
+    val deg: Double? = null
+
+    @Transient
+    val gust: Double? = null
+}
 
 @Serializable
 data class Weather(
