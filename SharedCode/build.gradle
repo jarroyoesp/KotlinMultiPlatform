@@ -42,7 +42,7 @@ kotlin {
                                ? presets.iosArm64 : presets.iosX64
 
         fromPreset(iOSTarget, 'iOS') {
-            compilations.main.outputKinds('FRAMEWORK')
+            //compilations.main.outputKinds('FRAMEWORK')
         }
 
         fromPreset(presets.android, 'android')
