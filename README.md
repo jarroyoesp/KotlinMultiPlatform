@@ -37,4 +37,12 @@ https://www.raywenderlich.com/1022411-kotlin-multiplatform-project-for-android-a
 
 https://proandroiddev.com/kotlin-multiplatform-very-beginners-guide-part-3-database-e34c92daf41c
 
+### JVM - Desktop App
+
+To execute this version as desktop app, you have to execute this code on your console:
+
+```
+./gradlew JavaFxApp:run
+```
+
 
