@@ -1,0 +1,41 @@
+plugins {
+    id("org.jetbrains.kotlin.frontend")
+    id("kotlin-dce-js")
+    id("kotlin2js")
+}
+
+dependencies {
+    compile("org.jetbrains.kotlin:kotlin-stdlib-js:$Versions.kotlin")
+    compile("org.jetbrains.kotlinx:kotlinx-html-js:0.6.11")
+
+    compile("org.jetbrains:kotlin-react:16.6.0-pre.62-kotlin-1.3.0")
+    compile("org.jetbrains:kotlin-react-dom:16.6.0-pre.62-kotlin-1.3.0")
+    compile(project(":common"))
+}
+
+compileKotlin2Js {
+//    kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
+    kotlinOptions.moduleKind = "commonjs"
+    kotlinOptions.main = "call"
+}
+
+kotlinFrontend {
+    downloadNodeJsVersion = "latest"
+
+    npm {
+        dependency("kotlinx-html-js")
+        dependency("react")
+        dependency("react-dom")
+        dependency("material-components-web")
+    }
+
+    webpackBundle {
+        bundleName = "main"
+        sourceMapEnabled = true  // enable/disable source maps
+        contentPath = file("src/main/web") // a file that represents a directory to be served by dev server)
+        publicPath = "/"  // web prefix
+        port = 8088   // dev server port
+        proxyUrl = "" // URL to be proxied, useful to proxy backend webserver
+        stats = "errors-only"  // log level
+    }
+}

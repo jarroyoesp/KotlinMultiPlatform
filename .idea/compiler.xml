@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="SharedCode_androidMain" target="1.6" />
       <module name="SharedCode_androidTest" target="1.6" />
+      <module name="SharedCode_jvmMain" target="1.6" />
+      <module name="SharedCode_jvmTest" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

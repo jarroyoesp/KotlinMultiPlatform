@@ -1,10 +1,8 @@
-package com.jarroyo.firstkotlinmultiplatform
+package com.jarroyo.sharedcode
 
 import kotlinx.coroutines.*
-import platform.Foundation.NSData
 import platform.darwin.*
 import kotlin.coroutines.CoroutineContext
-import kotlin.native.concurrent.freeze
 
 internal actual val ApplicationDispatcher: CoroutineContext =
     NsQueueDispatcher(dispatch_get_main_queue())

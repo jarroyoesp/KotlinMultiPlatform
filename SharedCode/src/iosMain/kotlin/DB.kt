@@ -1,7 +1,7 @@
 package com.jarroyo.kotlinmultiplatform
 
 import com.squareup.sqldelight.db.SqlDriver
-import com.jarroyo.firstkotlinmultiplatform.Database
+import com.jarroyo.sharedcode.Database
 import com.squareup.sqldelight.drivers.ios.NativeSqliteDriver
 
 actual fun getDataBase(): Database? {

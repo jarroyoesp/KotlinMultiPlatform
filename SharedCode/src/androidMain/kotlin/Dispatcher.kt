@@ -1,4 +1,4 @@
-package com.jarroyo.firstkotlinmultiplatform
+package com.jarroyo.sharedcode
 
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext

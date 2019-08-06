@@ -17,7 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/activity_main_rv_location"
-                android:name="com.jarroyo.firstkotlinmultiplatform.ui.main.weatherListFragment.HomeFragment"></fragment>
+                android:name="com.jarroyo.sharedcode.ui.main.weatherListFragment.HomeFragment"></fragment>
     </FrameLayout>
     <!-- NAVIGATION MENU -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

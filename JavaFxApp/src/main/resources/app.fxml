@@ -1,0 +1,16 @@
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<HBox fx:controller="com.jarroyo.sharedcode.AppController"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="rootPane">
+    <ListView fx:id="listView"/>
+    <ScrollPane fx:id="detailView">
+        <VBox maxWidth="1.7976931348623157E308">
+            <Label fx:id="detailLabel" HBox.hgrow="ALWAYS">
+            </Label>
+        </VBox>
+    </ScrollPane>
+</HBox>

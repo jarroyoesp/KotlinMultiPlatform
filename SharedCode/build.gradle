@@ -52,6 +52,8 @@ kotlin {
 
     targets {
 
+        jvm()
+
         // iPhone simulator    : presets.iosX64
         // real iDevice 32 bit : presets.iosArm32
         // real iDevice 64 bit : presets.iosArm64
@@ -73,6 +75,17 @@ kotlin {
         }
 
         fromPreset(presets.android, 'android')
+
+        fromPreset(presets.js, "js") {
+            compileKotlinJs {
+                kotlinOptions.metaInfo = true
+                kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
+                kotlinOptions.sourceMap = true
+                kotlinOptions.moduleKind = "commonjs"
+                kotlinOptions.main = "call"
+            }
+        }
+
     }
 
     sourceSets {
@@ -131,6 +144,38 @@ kotlin {
 
             // SQL Delight
             implementation "com.squareup.sqldelight:ios-driver:$sqldelight_version"
+        }
+
+        jsMain {
+            dependencies {
+                implementation kotlin('stdlib-js')
+            }
+        }
+
+        jvmMain {
+            dependencies {
+                implementation kotlin('stdlib')
+
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31'
+
+                // COROUTINE
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+
+                // SERIALIZATION
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializer_version"
+
+                // KTOR
+                implementation "io.ktor:ktor-client-android:$ktor_version"
+
+                // SQL Delight
+                //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
+                //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
+                implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
+
+
+                implementation "com.squareup.sqldelight:sqlite-driver:$sqldelight_version"
+            }
         }
 
         commonTest {
@@ -203,7 +248,7 @@ sqldelight {
     //More options https://github.com/square/sqldelight/blob/master/RELEASE_CANDIDATE.md
     //packageName = 'com.jarroyo.firstkotlinmultiplatform'
     Database {
-        packageName = "com.jarroyo.firstkotlinmultiplatform"
+        packageName = "com.jarroyo.sharedcode"
     //    // By default this is ["sqldelight"], and means your sqldelight will be in
     //    // folders like 'src/main/db' instead of 'src/main/sqldelight'
     //    //sourceFolders = ["sqldelight"]

@@ -1,6 +1,6 @@
 package com.jarroyo.kotlinmultiplatform
 
-import com.jarroyo.firstkotlinmultiplatform.Database
+import com.jarroyo.sharedcode.Database
 
 actual fun getDataBase(): Database? {
     // On Android Database is passed from the app
