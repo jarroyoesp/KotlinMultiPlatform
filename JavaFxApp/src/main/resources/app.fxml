@@ -3,9 +3,23 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+
+
 <HBox fx:controller="com.jarroyo.sharedcode.AppController"
       xmlns:fx="http://javafx.com/fxml"
       fx:id="rootPane">
+    <Label fx:id="locationName" text="Location:">
+    </Label>
+
+    <TextField fx:id="textFieldName">
+    </TextField>
+
+    <Button fx:id = "buttonAddLocation"
+            text="Add"/>
+
     <ListView fx:id="listView"/>
     <ScrollPane fx:id="detailView">
         <VBox maxWidth="1.7976931348623157E308">

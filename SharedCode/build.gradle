@@ -160,7 +160,6 @@ kotlin {
 
                 // COROUTINE
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
                 // SERIALIZATION
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serializer_version"

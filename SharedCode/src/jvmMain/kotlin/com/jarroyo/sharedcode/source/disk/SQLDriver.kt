@@ -10,5 +10,6 @@ actual class DbArgs(
 
 actual fun getSqlDriver(dbArgs: DbArgs): SqlDriver {
     val driver: SqlDriver = JdbcSqliteDriver()
+    Database.Schema.create(driver)
     return driver
 }
