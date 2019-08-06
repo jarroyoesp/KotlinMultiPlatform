@@ -22,6 +22,7 @@ class AppController: ProfileView {
     lateinit var rootPane: HBox
     lateinit var detailView: ScrollPane
     lateinit var detailLabel: Label
+    lateinit var textFieldName: TextField
     lateinit var buttonAddLocation: Button
     lateinit var listView: ListView<Location>
 
@@ -59,7 +60,7 @@ class AppController: ProfileView {
 
         // Button
         buttonAddLocation.setOnAction {
-            mPresenter.saveLocation(Location(detailLabel.text, "Country"))
+            mPresenter.saveLocation(Location(textFieldName.text, "Country"))
         }
     }
 
@@ -106,7 +107,8 @@ class AppController: ProfileView {
     }
 
     override fun onSuccessSaveLocation(locationList: List<LocationModel>) {
-        showDialog("Location Saved", "Good", "Your location is saved!")
+        val cityName = locationList.last().city_name
+        showDialog("Location Saved", "Good", "Your location $cityName is saved!")
         refreshLocationList(locationList)
     }
 
@@ -128,7 +130,7 @@ class AppController: ProfileView {
     }
 
     private fun refreshLocationList(locationModelList: List<LocationModel>) {
-        showDialog("SUCCESS Get Location List", "SUCCESS: Getting location list ${locationModelList.size}")
+
         Platform.runLater {
             var locationListParsed = arrayListOf<Location>()
 
@@ -137,8 +139,16 @@ class AppController: ProfileView {
                 locationListParsed.add(location)
             }
 
-            listView.items.addAll(locationListParsed)
-            listView.refresh()
+            if (locationListParsed.isNotEmpty()) {
+                val cityName = locationListParsed?.last().cityName
+                showDialog("SUCCESS Get Location List", "SUCCESS: Getting location list $cityName")
+
+
+                val array = arrayOfNulls<Location>(locationListParsed.size)
+                listView.items.addAll(locationListParsed.toArray(array))
+                listView.refresh()
+            }
+
         }
     }
 
