@@ -29,6 +29,16 @@ If you choose the branch iOSApp you can see this app:
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/iOS_App.png" width="200">
 
+### JVM - Desktop App
+
+To execute this version as desktop app, you have to execute this code on your console:
+
+```
+./gradlew JavaFxApp:run
+```
+
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/JVM_App.png" width="200">
+
 I have followed these examples:
 
 https://kotlinlang.org/docs/tutorials/native/mpp-ios-android.html
@@ -37,12 +47,6 @@ https://www.raywenderlich.com/1022411-kotlin-multiplatform-project-for-android-a
 
 https://proandroiddev.com/kotlin-multiplatform-very-beginners-guide-part-3-database-e34c92daf41c
 
-### JVM - Desktop App
 
-To execute this version as desktop app, you have to execute this code on your console:
-
-```
-./gradlew JavaFxApp:run
-```
 
 

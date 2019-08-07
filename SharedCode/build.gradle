@@ -168,11 +168,7 @@ kotlin {
                 implementation "io.ktor:ktor-client-android:$ktor_version"
 
                 // SQL Delight
-                //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
-                //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
                 implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
-
-
                 implementation "com.squareup.sqldelight:sqlite-driver:$sqldelight_version"
             }
         }

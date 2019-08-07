@@ -1,4 +1,5 @@
 package com.jarroyo.sharedcode
+
 import com.jarroyo.sharedcode.data.LocationModel
 import com.jarroyo.sharedcode.di.InjectorCommon
 import com.jarroyo.sharedcode.domain.model.CurrentWeather
@@ -12,16 +13,15 @@ import javafx.scene.control.Alert.AlertType
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 import javafx.scene.layout.Region
-import java.awt.event.ActionEvent
 
 
-
-class AppController: ProfileView {
-
+class AppController : ProfileView {
 
     lateinit var rootPane: HBox
     lateinit var detailView: ScrollPane
-    lateinit var detailLabel: Label
+    lateinit var tempMaxLabel: Label
+    lateinit var tempMinLabel: Label
+    lateinit var descriptionLabel: Label
     lateinit var textFieldName: TextField
     lateinit var buttonAddLocation: Button
     lateinit var listView: ListView<Location>
@@ -49,8 +49,6 @@ class AppController: ProfileView {
         //val languageFacts = arrayOf(location1,location2, location3)
         //listView.items.addAll(languageFacts)
         listView.selectionModel.selectedItemProperty().addListener { _, _, newValue ->
-            detailLabel.text = newValue.cityName
-
             mPresenter.getCurrentWeather(Location(newValue.cityName, "Spain"))
         }
 
@@ -71,15 +69,9 @@ class AppController: ProfileView {
         }
     }
 
-    /**
-     * ON CLICK
-     */
-    fun onClickAddLocation(event: ActionEvent) {
-
-    }
 
     private fun initPresenter() {
-        var dbArgsPar =  DbArgs()
+        var dbArgsPar = DbArgs()
         mPresenter = InjectorCommon.provideProfilePresenter(dbArgsPar)
         mPresenter.attachView(this)
 
@@ -98,8 +90,9 @@ class AppController: ProfileView {
 
     override fun onSuccessGetCurrentWeather(currentWeather: CurrentWeather) {
         Platform.runLater {
-            // Update UI here.
-            detailLabel.text = currentWeather.toString()
+            tempMaxLabel.text = "Temp. Max ${currentWeather.main?.temp_max.toString()} ºC"
+            tempMinLabel.text = "Temp. Min ${currentWeather.main?.temp_min.toString()} ºC"
+            descriptionLabel.text = "Description: ${currentWeather.weather?.get(0)?.description}"
         }
     }
 
@@ -130,7 +123,6 @@ class AppController: ProfileView {
     }
 
     private fun refreshLocationList(locationModelList: List<LocationModel>) {
-
         Platform.runLater {
             var locationListParsed = arrayListOf<Location>()
 
@@ -141,8 +133,6 @@ class AppController: ProfileView {
 
             if (locationListParsed.isNotEmpty()) {
                 val cityName = locationListParsed?.last().cityName
-                showDialog("SUCCESS Get Location List", "SUCCESS: Getting location list $cityName")
-
 
                 val array = arrayOfNulls<Location>(locationListParsed.size)
                 listView.items.addAll(locationListParsed.toArray(array))

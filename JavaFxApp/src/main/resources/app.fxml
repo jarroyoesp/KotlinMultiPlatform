@@ -23,8 +23,9 @@
     <ListView fx:id="listView"/>
     <ScrollPane fx:id="detailView">
         <VBox maxWidth="1.7976931348623157E308">
-            <Label fx:id="detailLabel" HBox.hgrow="ALWAYS">
-            </Label>
+            <Label fx:id="tempMaxLabel" HBox.hgrow="ALWAYS"></Label>
+            <Label fx:id="tempMinLabel" HBox.hgrow="ALWAYS"></Label>
+            <Label fx:id="descriptionLabel" HBox.hgrow="ALWAYS"></Label>
         </VBox>
     </ScrollPane>
 </HBox>
