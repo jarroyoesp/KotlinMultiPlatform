@@ -1,4 +1,4 @@
-# Kotlin-Multiplatform (Android & iOS App)
+# Kotlin-Multiplatform (Android & iOS App & JVM Desktop App)
 
 This example shows how to create a simple Android/iOS project sharing some Kotlin code. This app saves on a local database your favourites locations and get the current weather of them from OpenWeatherMap.
 
