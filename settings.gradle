@@ -16,4 +16,4 @@ include ':SharedCode'
 include ":JavaFxApp"
 
 // Deshabilitar para Android / Habilitar para iOS
-enableFeaturePreview('GRADLE_METADATA')
+//enableFeaturePreview('GRADLE_METADATA')
