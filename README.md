@@ -37,7 +37,7 @@ To execute this version as desktop app, you have to execute this code on your co
 ./gradlew JavaFxApp:run
 ```
 
-<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/JVM_App.png" width="200">
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/JVMApp.png" width="200">
 
 I have followed these examples:
 
