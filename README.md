@@ -36,6 +36,11 @@ To execute this version as desktop app, you have to execute this code on your co
 ```
 ./gradlew JavaFxApp:run
 ```
+By default the JDBC SQLite is created in memory. If you want to persist your database in your disk, you have to indicate the path when you create the database driver:
+
+```
+JdbcSqliteDriver("jdbc:sqlite:$your_database_path")
+```
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/JVMApp.png" width="800">
 
