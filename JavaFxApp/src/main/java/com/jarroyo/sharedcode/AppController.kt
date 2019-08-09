@@ -135,6 +135,7 @@ class AppController : ProfileView {
                 val cityName = locationListParsed?.last().cityName
 
                 val array = arrayOfNulls<Location>(locationListParsed.size)
+                listView.items.clear()
                 listView.items.addAll(locationListParsed.toArray(array))
                 listView.refresh()
             }
