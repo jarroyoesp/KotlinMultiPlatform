@@ -6,6 +6,7 @@ apply plugin: 'com.squareup.sqldelight'
 
 apply plugin: 'com.android.library'
 
+// It is necessay because we need to have access to context on CommonCode to use SQLDelight database
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -37,21 +38,7 @@ android {
 }
 
 kotlin {
-   //targets {
-   //    final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos")  \
-   //                           ? presets.iosArm64 : presets.iosX64
-
-   //    fromPreset(iOSTarget, 'iOS') {
-   //        compilations.main.outputKinds('FRAMEWORK')
-   //    }
-
-   //    fromPreset(presets.jvm, 'android')
-
-
-   //}
-
     targets {
-
         jvm()
 
         // iPhone simulator    : presets.iosX64
@@ -102,10 +89,6 @@ kotlin {
 
             // KTOR
             implementation "io.ktor:ktor-client-core:$ktor_version"
-
-            // SQL Delight
-            //implementation "com.squareup.sqldelight:runtime-metadata:$sqldelight_version"
-
         }
 
         androidMain.dependencies {
@@ -126,8 +109,6 @@ kotlin {
             implementation "io.ktor:ktor-client-android:$ktor_version"
 
             // SQL Delight
-            //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
-            //implementation "com.squareup.sqldelight:runtime-jvm:$sqldelight_version"
             implementation "com.squareup.sqldelight:android-driver:$sqldelight_version"
         }
 
@@ -200,27 +181,6 @@ kotlin {
 }
 
 
-//task packForXCode(type: Sync) {
-//    final File frameworkDir = new File(buildDir, "xcode-frameworks")
-//    final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
-//
-//    inputs.property "mode", mode
-//    dependsOn kotlin.targets.iOS.compilations.main.linkTaskName("FRAMEWORK", mode)
-//
-//    from { kotlin.targets.iOS.compilations.main.getBinary("FRAMEWORK", mode).parentFile }
-//    into frameworkDir
-//
-//    doLast {
-//        new File(frameworkDir, 'gradlew').with {
-//            text = "#!/bin/bash\nexport 'JAVA_HOME=${System.getProperty("java.home")}'\ncd '${rootProject.rootDir}'\n./gradlew \$@\n"
-//            setExecutable(true)
-//        }
-//    }
-//}
-//
-//tasks.build.dependsOn packForXCode
-
-
 task packForXCode {
     def buildType = project.findProperty("kotlin.build.type") ?: "DEBUG"
     dependsOn "link${buildType.toLowerCase().capitalize()}FrameworkIos"
@@ -240,29 +200,9 @@ task packForXCode {
 
 
 sqldelight {
-    //The package where all entities will be generated in
-    //More options https://github.com/square/sqldelight/blob/master/RELEASE_CANDIDATE.md
-    //packageName = 'com.jarroyo.firstkotlinmultiplatform'
     Database {
         packageName = "com.jarroyo.sharedcode"
-    //    // By default this is ["sqldelight"], and means your sqldelight will be in
-    //    // folders like 'src/main/db' instead of 'src/main/sqldelight'
-    //    //sourceFolders = ["sqldelight"]
-
-    //    // Defaults to file("src/main/sqldelight")
-    //    //schemaOutputDirectory = file("src/main/sqldelight/migrations")
-
-    //    // Optionally specify schema dependencies on other gradle projects
-    //    //dependency project(':OtherProject')
     }
-    // For native targets, chose wether sqlite should be automatically linked.
-    // Defaults to true.
-    //linkSqlite = false
-
-    //QueryWrapper {
-    //    packageName = "com.jarroyo.firstkotlinmultiplatform"
-    //}
-
 }
 
 // workaround for https://youtrack.jetbrains.com/issue/KT-27170
