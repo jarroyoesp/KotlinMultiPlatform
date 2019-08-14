@@ -7,6 +7,7 @@ import com.jarroyo.sharedcode.domain.usecase.location.saveLocation.SaveLocationU
 import com.jarroyo.sharedcode.domain.usecase.weather.getWeather.GetWeatherByNameUseCase
 import com.jarroyo.sharedcode.domain.usecase.weather.getWeatherList.GetWeatherListUseCase
 import com.jarroyo.sharedcode.presentation.ProfilePresenter
+import com.jarroyo.sharedcode.presentation.WeatherPresenter
 import com.jarroyo.sharedcode.repository.LocationRepository
 import com.jarroyo.sharedcode.repository.WeatherRepository
 import com.jarroyo.sharedcode.source.disk.DbArgs
@@ -62,6 +63,10 @@ object InjectorCommon {
      */
     fun provideProfilePresenter(dbArgs: DbArgs): ProfilePresenter {
         return ProfilePresenter(provideGetLocationMPPUseCase(dbArgs), provideGetWeatherUseCase(), provideSaveLocationUseCase(dbArgs))
+    }
+
+    fun provideWeatherPresenter(): WeatherPresenter {
+        return WeatherPresenter(provideGetWeatherUseCase())
     }
 
 }

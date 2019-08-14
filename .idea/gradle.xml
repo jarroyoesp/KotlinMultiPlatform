@@ -9,8 +9,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/JavaFxApp" />
+            <option value="$PROJECT_DIR$/JsApp" />
             <option value="$PROJECT_DIR$/SharedCode" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/backend" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

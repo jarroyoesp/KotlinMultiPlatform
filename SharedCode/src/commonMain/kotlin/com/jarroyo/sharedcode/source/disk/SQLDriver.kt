@@ -5,10 +5,15 @@ import com.squareup.sqldelight.db.SqlDriver
 
 expect class DbArgs
 
-expect fun getSqlDriver(dbArgs: DbArgs): SqlDriver
+expect fun getSqlDriver(dbArgs: DbArgs): SqlDriver?
 
 object DatabaseCreator {
-    fun getDataBase(dbArgs: DbArgs): Database {
-        return Database(getSqlDriver(dbArgs))
+    fun getDataBase(dbArgs: DbArgs): Database? {
+        val sqlDriver  = getSqlDriver(dbArgs)
+        if (sqlDriver != null) {
+            return Database(sqlDriver)
+        } else {
+            return null
+        }
     }
 }
