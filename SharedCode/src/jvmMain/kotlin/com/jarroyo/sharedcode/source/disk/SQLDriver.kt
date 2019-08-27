@@ -11,8 +11,8 @@ actual class DbArgs(
 actual fun getSqlDriver(dbArgs: DbArgs): SqlDriver {
     // By default JdbcSqliteDriver create database in Memory. If you want to create a dataBase on your path add something
     // similar to:
-    // jdbc:sqlite:/Users/javierarroyo/Projects/Pruebas/KotlinMultiplatform/First/database/database.db
-    val driver: SqlDriver = JdbcSqliteDriver("jdbc:sqlite:/Users/javierarroyo/Projects/Pruebas/KotlinMultiplatform/First/database/database.db")
+    // jdbc:sqlite:/Users/javierarroyo/Projects/Pruebas/KotlinMultiplatform/First/JavaFxApp/database/database.db
+    val driver: SqlDriver = JdbcSqliteDriver("jdbc:sqlite:/Users/javierarroyo/Projects/Pruebas/KotlinMultiplatform/First/JavaFxApp/database/database.db")
     try {
         Database.Schema.create(driver)
     } catch (e: Exception) {}
