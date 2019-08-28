@@ -56,6 +56,8 @@ If you want to launch a web to get the weather you can try the example changing 
 --> localhost:8080
 ```
 
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/jsApp.png" width="200">
+
 I have followed these examples:
 
 https://kotlinlang.org/docs/tutorials/native/mpp-ios-android.html
