@@ -10,7 +10,7 @@ actual class DbArgs(
     var context: Context
 )
 
-actual fun getSqlDriver(dbArgs: DbArgs): SqlDriver {
+actual fun getSqlDriver(dbArgs: DbArgs): SqlDriver? {
     val driver: SqlDriver = AndroidSqliteDriver(Database.Schema, dbArgs.context, "test.db")
     return driver
 }
