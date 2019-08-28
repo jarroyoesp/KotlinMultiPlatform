@@ -56,7 +56,7 @@ If you want to launch a web to get the weather you can try the example changing 
 --> localhost:8080
 ```
 
-<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/jsApp.png" width="200">
+<img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/jsApp.png" width="400">
 
 I have followed these examples:
 
