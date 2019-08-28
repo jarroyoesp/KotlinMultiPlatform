@@ -46,6 +46,16 @@ JdbcSqliteDriver("jdbc:sqlite:$your_database_path")
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/JVMApp.png" width="800">
 
+### JS App - [Branch --> develop/JsApp]
+
+If you want to launch a web to get the weather you can try the example changing to the branch develop/JsApp and executing the next commands:
+
+```
+./gradlew JsApp:run
+./gradlew BackEnd:run
+--> localhost:8080
+```
+
 I have followed these examples:
 
 https://kotlinlang.org/docs/tutorials/native/mpp-ios-android.html
