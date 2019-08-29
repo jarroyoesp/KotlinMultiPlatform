@@ -46,9 +46,9 @@ JdbcSqliteDriver("jdbc:sqlite:$your_database_path")
 
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/JVMApp.png" width="800">
 
-### JS App - [Branch --> develop/JsApp]
+### JS App 
 
-If you want to launch a web to get the weather you can try the example changing to the branch develop/JsApp and executing the next commands:
+If you want to launch a web to get the weather you can try executing the next commands:
 
 ```
 ./gradlew JsApp:run
