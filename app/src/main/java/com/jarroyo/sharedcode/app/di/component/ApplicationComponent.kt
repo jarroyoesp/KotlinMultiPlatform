@@ -14,7 +14,8 @@ import com.jarroyo.sharedcode.app.di.viewModel.ViewModelFactoryModule
 import com.jarroyo.sharedcode.app.di.viewModel.ViewModelModule
 import dagger.Component
 import javax.inject.Singleton
-
+//creation of singleton Class
+//data classes
 @Singleton
 @Component(
     modules = arrayOf(
