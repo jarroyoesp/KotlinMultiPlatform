@@ -11,8 +11,7 @@ INSERT OR FAIL INTO locationModel(city_name, country) VALUES (?, ?);
 
 
 selectAll:
-SELECT *
-FROM locationModel;
+SELECT * FROM locationModel;
 
 deleteItem:
 DELETE FROM locationModel WHERE city_name = ?;
