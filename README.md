@@ -56,6 +56,11 @@ If you want to launch a web to get the weather you can try executing the next co
 --> localhost:8080
 ```
 
+Current weather is not shown when you launch the browser? If you have this problem (Module not found: Error: Can't resolve 'core-js/features/object/assign') try to reinstall the node module core-js:
+```
+npm install core-js
+```
+
 <img src="https://github.com/jarroyoesp/KotlinMultiPlatform/blob/master/images/jsApp.png" width="400">
 
 I have followed these examples:

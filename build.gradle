@@ -46,7 +46,7 @@ ext {
     coroutine_version = "1.2.1"
     serializer_version = "0.13.0"
     ktor_version = "1.2.5"
-    react_version = "16.8.6"
+    react_version = "16.9.0"
 
     sqldelight_version = "1.2.0"
 
