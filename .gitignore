@@ -40,3 +40,6 @@ xcuserdata
 
 # CocoaPods
 Pods/
+
+#Node Modules
+node_modules
