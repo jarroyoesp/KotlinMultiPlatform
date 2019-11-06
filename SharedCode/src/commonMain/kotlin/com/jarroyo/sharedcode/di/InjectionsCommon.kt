@@ -11,6 +11,11 @@ import com.jarroyo.sharedcode.presentation.WeatherPresenter
 import com.jarroyo.sharedcode.repository.LocationRepository
 import com.jarroyo.sharedcode.repository.WeatherRepository
 import com.jarroyo.sharedcode.source.disk.DbArgs
+import org.kodein.di.Kodein
+import org.kodein.di.erased.bind
+import org.kodein.di.erased.instance
+import org.kodein.di.erased.provider
+import org.kodein.di.erased.singleton
 import kotlin.native.concurrent.ThreadLocal
 
 @ThreadLocal
@@ -67,6 +72,17 @@ object InjectorCommon {
 
     fun provideWeatherPresenter(): WeatherPresenter {
         return WeatherPresenter(provideGetWeatherUseCase())
+    }
+
+    val KodeInInjector = Kodein {
+        //import(KodeInDataModule)
+        //import(KodeInRepositoryModule)
+        //import(KodeInUseCaseModule)
+
+        bind<WeatherApi>() with singleton { WeatherApi() }
+        bind<WeatherRepository>() with provider { WeatherRepository(instance()) }
+        bind<GetWeatherListUseCase>() with provider { GetWeatherListUseCase(instance()) }
+        bind<GetWeatherByNameUseCase>() with provider { GetWeatherByNameUseCase(instance()) }
     }
 
 }

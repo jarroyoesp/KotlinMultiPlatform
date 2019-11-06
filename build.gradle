@@ -9,6 +9,8 @@ buildscript {
         maven { url "https://dl.bintray.com/soywiz/soywiz" }
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { url "https://dl.bintray.com/kodein-framework/Kodein-DI/org/kodein/di/" }
+        maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
 
 
     }
@@ -38,6 +40,7 @@ allprojects {
         maven { url "https://dl.bintray.com/soywiz/soywiz" }
         maven { url "http://dl.bintray.com/kotlin/kotlinx.html" }
         maven { url "https://kotlin.bintray.com/kotlin-js-wrappers" }
+        maven { url "https://dl.bintray.com/kodein-framework/Kodein-DI" }
     }
 }
 
@@ -83,7 +86,7 @@ ext {
     androidPlotVersion = "1.5.6"
 
     klock_version = "1.4.0"
-
+    kodeinVersion = "6.4.1"
 
 }
 

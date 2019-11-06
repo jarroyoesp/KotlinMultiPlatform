@@ -35,6 +35,16 @@ android {
             res.srcDirs = ['src/androidTest/res']
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
 }
 
 kotlin {
@@ -89,6 +99,11 @@ kotlin {
 
             // KTOR
             implementation "io.ktor:ktor-client-core:$ktor_version"
+
+            // KODE IN
+            implementation "org.kodein.di:kodein-di-core:$kodeinVersion"
+            implementation "org.kodein.di:kodein-di-erased:$kodeinVersion"
+
         }
 
         androidMain.dependencies {
