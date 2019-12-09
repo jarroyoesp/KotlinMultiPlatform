@@ -1,4 +1,5 @@
 # Kotlin-Multiplatform (Android, iOS, JS & JVM Desktop App)
+![kotlin-version](https://img.shields.io/badge/kotlin-1.3.50-orange)
 
 This example shows how to create a simple Android/iOS/JVM/JS project sharing some Kotlin code. This app saves on a local database your favourites locations and get the current weather of them from OpenWeatherMap.
 
