@@ -30,7 +30,7 @@ fun Application.helloworld() {
     }
 
     install(ContentNegotiation) {
-        serializable { }
+        //serializable { }
     }
 
     install(FreeMarker) {

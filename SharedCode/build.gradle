@@ -125,7 +125,7 @@ kotlin {
             implementation "io.ktor:ktor-client-ios:$ktor_version"
 
             // SQL Delight
-            implementation "com.squareup.sqldelight:ios-driver:$sqldelight_version"
+            implementation "com.squareup.sqldelight:native-driver:$sqldelight_version"
         }
 
         jvmMain.dependencies {
