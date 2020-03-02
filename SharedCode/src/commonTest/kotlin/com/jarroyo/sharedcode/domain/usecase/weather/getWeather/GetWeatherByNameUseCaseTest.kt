@@ -1,10 +1,10 @@
 package com.jarroyo.sharedcode.domain.usecase.weather.getWeather
 
 import com.jarroyo.sharedcode.TestUtils
-import com.jarroyo.kotlinmultiplatform.domain.Response
+import com.jarroyo.sharedcode.domain.Response
 import com.jarroyo.sharedcode.domain.model.CurrentWeather
 import com.jarroyo.sharedcode.domain.model.Location
-import com.jarroyo.kotlinmultiplatform.repository.WeatherRepository
+import com.jarroyo.sharedcode.repository.WeatherRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.serialization.json.Json
@@ -17,7 +17,7 @@ class GetWeatherByNameUseCaseTest {
     private val getWeatherByNameUseCase = GetWeatherByNameUseCase(repository)
 
     @Test
-    fun `returns current weather from WeatherRepository if no error`() {
+    fun `returns_current_weather_from_WeatherRepository_if_no_error`() {
         val location = mockk<Location>()
 
         val currentWeather =   Json.parse(CurrentWeather.serializer(), TestUtils.jsonCurrentWeatherResponse)
@@ -35,7 +35,7 @@ class GetWeatherByNameUseCaseTest {
 
 
     @Test
-    fun `returns error from WeatherRepository if error getting weather`() {
+    fun `returns_error_from_WeatherRepository_if_erro_getting_weather`() {
         val location = mockk<Location>()
 
         val currentWeather =   Json.parse(CurrentWeather.serializer(), TestUtils.jsonCurrentWeatherResponse)
