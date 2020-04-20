@@ -1,6 +1,7 @@
 # Kotlin-Multiplatform (Android, iOS, JS & JVM Desktop App)
 ![kotlin-version](https://img.shields.io/badge/kotlin-1.3.50-orange)
 <a target="_blank" href="https://androidweekly.net/issues/issue-397"><img src="https://androidweekly.net/issues/issue-397/badge"></a>
+<a target="_blank" href="https://androidweekly.net/issues/issue-380"><img src="https://androidweekly.net/issues/issue-380/badge"></a>
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This example shows how to create a simple Android/iOS/JVM/JS project sharing some Kotlin code. This app saves on a local database your favourites locations and get the current weather of them from OpenWeatherMap.
